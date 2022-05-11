@@ -1,3 +1,14 @@
+-- 0. Basic commands
+
+    -- 0.1. Connect to mysql database server
+    mysql -u username -p
+
+    -- 0.2. Select Database to work with
+    use database_name;
+
+    -- 0.3. Show Tables
+    show tables;
+
 -- 1. QUERYING SINGLE TABLE
     SELECT * FROM country; -- 1.1 Fetch all columns from the country table:
     SELECT id, name FROM city; -- Fetch id and name columns from the city table:
@@ -9,44 +20,44 @@
     SELECT co.name, ci.name FROM city AS ci JOIN country AS co ON ci.country_id = co.id; -- Tables
 
 -- 3. FILTERING THE OUTPUT
-    -- 3.1 COMPARISON OPERATORS
+    -- 3.1. COMPARISON OPERATORS
     SELECT name FROM city WHERE rating > 3; -- Fetch names of cities that have a rating above 3:
     SELECT name FROM city WHERE name != 'Berlin' AND name != 'Madrid'; -- Fetch names of cities that are neither Berlin nor Madrid:
 
-    -- 3.2 TEXT OPERATORS
+    -- 3.2. TEXT OPERATORS
     SELECT name FROM city WHERE name LIKE 'P%' OR name LIKE '%s'; -- Fetch names of cities that start with a 'P' or end with an 's':
     SELECT name FROM city WHERE name LIKE '_ublin'; -- Fetch names of cities that start with any letter followed by 'ublin' (like Dublin in Ireland or Lublin in Poland):
 
-    -- 3.3 OTHER OPERATORS
+    -- 3.3. OTHER OPERATORS
     SELECT name FROM city WHERE population BETWEEN 500000 AND 5000000; -- Fetch names of cities that have a population between 500K and 5M:
     SELECT name FROM city WHERE rating IS NOT NULL; -- Fetch names of cities that don't miss a rating value:
     SELECT name FROM city WHERE country_id IN (1, 4, 7, 8); -- Fetch names of cities that are in countries with IDs 1, 4, 7, or 8:
 
 -- 4. QUERYING MULTIPLE TABLES
 
-    -- 4.1 INNER JOIN - JOIN (or explicitly INNER JOIN) returns rows that have matching values in both tables.
+    -- 4.1. INNER JOIN - JOIN (or explicitly INNER JOIN) returns rows that have matching values in both tables.
     SELECT city.name, country.name FROM city [INNER] JOIN country ON city.country_id = country.id;
 
-    -- 4.2 LEFT JOIN - LEFT JOIN returns all rows from the left table with corresponding rows from the right table. If there's no matching row, NULLs are returned as values from the second table.
+    -- 4.2. LEFT JOIN - LEFT JOIN returns all rows from the left table with corresponding rows from the right table. If there's no matching row, NULLs are returned as values from the second table.
     SELECT city.name, country.name FROM city LEFT JOIN country ON city.country_id = country.id; 
 
-    -- 4.3 RIGHT JOIN - RIGHT JOIN returns all rows from the right table with corresponding rows from the left table. If there's no matching row, NULLs are returned as values from the left table.
+    -- 4.3. RIGHT JOIN - RIGHT JOIN returns all rows from the right table with corresponding rows from the left table. If there's no matching row, NULLs are returned as values from the left table.
     SELECT city.name, country.name FROM city RIGHT JOIN country ON city.country_id = country.id;
 
-    -- 4.4 FULL JOIN - FULL JOIN (or explicitly FULL OUTER JOIN) returns all rows from both tables – if there's no matching row in the second table, NULLs are returned.
+    -- 4.4. FULL JOIN - FULL JOIN (or explicitly FULL OUTER JOIN) returns all rows from both tables – if there's no matching row in the second table, NULLs are returned.
     SELECT city.name, country.name FROM city FULL [OUTER] JOIN country ON city.country_id = country.id;
 
-    -- 4.5 CROSS JOIN - CROSS JOIN returns all possible combinations of rows from both tables. There are two syntaxes available.
+    -- 4.5. CROSS JOIN - CROSS JOIN returns all possible combinations of rows from both tables. There are two syntaxes available.
     SELECT city.name, country.name FROM city CROSS JOIN country;
     SELECT city.name, country.name FROM city, country;
 
-    -- 4.6 NATURAL JOIN - NATURAL JOIN will join tables by all columns with the same name. - rarely used in practice
+    -- 4.6. NATURAL JOIN - NATURAL JOIN will join tables by all columns with the same name. - rarely used in practice
     SELECT city.name, country.name FROM city NATURAL JOIN country;
 
 -- 5. AGGREGATION AND GROUPING
--- 5.1 GROUP BY groups together rows that have the same values in specified columns. It computes summaries (aggregates) for each unique combination of values.
+-- 5.1. GROUP BY groups together rows that have the same values in specified columns. It computes summaries (aggregates) for each unique combination of values.
 
--- 5.2 AGGREGATE FUNCTIONS
+-- 5.2. AGGREGATE FUNCTIONS
     avg(expr) - average value for rows within the group
     count(expr) - count of values for rows within the group
     max(expr) - maximum value within the group

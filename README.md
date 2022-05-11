@@ -1,5 +1,10 @@
 # theories
 
+BinaryTree
+- Post-Order Traversal
+- In-order Traversal
+- Pre-order Traversal
+
 Factorial
 - Find factorial of a given number using loop
 - Find factorial of a given number using recursion

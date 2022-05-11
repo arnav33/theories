@@ -109,21 +109,21 @@
 
 -- 7. SET OPERATIONS -- Set operations are used to combine the results of two or more queries into a single result. The combined queries must return the same number of columns and compatible data types. The names of the corresponding columns can be different
 
--- 7.1. UNION - UNION combines the results of two result sets and removes duplicates. UNION ALL doesn't remove duplicate rows.
--- This query displays German cyclists together with German skaters:
-SELECT name FROM cycling WHERE country = 'DE'
-UNION / UNION ALL
-SELECT name FROM skating WHERE country = 'DE';
+    -- 7.1. UNION - UNION combines the results of two result sets and removes duplicates. UNION ALL doesn't remove duplicate rows.
+    -- This query displays German cyclists together with German skaters:
+    SELECT name FROM cycling WHERE country = 'DE'
+    UNION / UNION ALL
+    SELECT name FROM skating WHERE country = 'DE';
 
--- 7.2. INTERSECT - INTERSECT returns only rows that appear in both result sets.
--- This query displays German cyclists who are also German skaters at the same time:
-SELECT name FROM cycling WHERE country = 'DE'
-INTERSECT
-SELECT name FROM skating WHERE country = 'DE';
+    -- 7.2. INTERSECT - INTERSECT returns only rows that appear in both result sets.
+    -- This query displays German cyclists who are also German skaters at the same time:
+    SELECT name FROM cycling WHERE country = 'DE'
+    INTERSECT
+    SELECT name FROM skating WHERE country = 'DE';
 
--- 7.3. EXCEPT - EXCEPT returns only the rows that appear in the first result set but do not appear in the second result set.
--- This query displays German cyclists unless they are also German skaters at the same time:
+    -- 7.3. EXCEPT - EXCEPT returns only the rows that appear in the first result set but do not appear in the second result set.
+    -- This query displays German cyclists unless they are also German skaters at the same time:
 
-SELECT name FROM cycling WHERE country = 'DE'
-EXCEPT / MINUS
-SELECT name FROM skating WHERE country = 'DE';`
+    SELECT name FROM cycling WHERE country = 'DE'
+    EXCEPT / MINUS
+    SELECT name FROM skating WHERE country = 'DE';`

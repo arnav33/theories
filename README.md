@@ -39,5 +39,7 @@ Sort
 - Merge Sort
 - Heap Sort
 
+-- SQL Cheat Sheet without table reference - taken from "https://learnsql.com/blog/sql-basics-cheat-sheet/"
+
 Utility
 - swap 2 values in an array

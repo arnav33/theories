@@ -1,0 +1,4 @@
+T(n) = aT(n/b) + O(nd)
+Where, a = number of recursive calls,
+	b = number of sub problems
+	d = Time complexity inside the function

@@ -1,0 +1,2 @@
+a-1 % p = ap – 2 % p	where, p is a prime number
+ab % p = (a % p)b % (p – 1) % p		where, p is a prime number

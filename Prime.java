@@ -13,6 +13,8 @@ public class Prime {
         return ans;
     }
 
+
+    // Sieve Of Eratosthenes
     public static ArrayList<Integer> getPrimeNumbers(int max) {
         final boolean isNumberAPrime[] = new boolean[(int)(1e6+1)];
         final ArrayList<Integer> primeList = new ArrayList<>();

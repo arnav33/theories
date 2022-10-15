@@ -1,0 +1,32 @@
+state management
+managing user interface based on state changes
+creating template structure, templating engine
+
+
+React core library
+    react dom - binding for this library with browser
+    react router - routing
+    react redux - state management
+    react scripts - build
+
+react + react native -> mobile
+react + react cli -> CLI tools
+
+npx create-react-app fullstack-react-1
+npm i underscore
+
+webpack == gradle -> build tools
+babel -> provides backward compatibility for browsers
+
+React Reconceliation Algorithm: The algorithm to find changes in the virtual dom (difference between current and new virtual dom), so that only those changes can be updated to the browser.
+
+hooks: useMemo, useState, useEffect, useContext
+
+https://swapi.dev/api
+https://fakestoreapi.com/docs
+https://fakestoreapi.com/docs
+
+events: error, unhandledPromiseRejection
+
+memo: renders a component only when it changes, doesn't rerender if it's parent changes
+context

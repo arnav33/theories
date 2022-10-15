@@ -1,0 +1,65 @@
+js is a functional programming language
+everything in js is object
+loosely typed language
+
+Primitive Data types
+string
+number
+boolean
+null
+undefined
+
+typeof 'hello'
+
+var a = null;
+typeof(a) // object
+
+var a = 2;
+var b = '2';
+a == b // true, type cohersion
+
+type cohersion - implicit and explicit
+
+function declaration
+function a() {};
+
+function expression
+var a = function() {}
+
+iife - immediately invoked function expression
+(function a() {}){};
+
+prototypal inheritance: inheritance in js happens through prototype
+
+Use brackets / blocks start on the same line, not different line;
+i.e.
+ return {
+
+ }
+ not
+ return
+ {
+
+ }
+
+hoisting
+
+prototype creates class level method
+dunder proto creates object level method
+
+hoisting
+closure
+
+bind call apply
+bind: changes the current context (this) to another object 
+call: binds and call, params are comma separated
+apply: same as call, params are array not comma seperated
+
+event loop
+EventListener
+
+bubbling, capcturing
+true: capturing,
+false: bubbling
+default: false
+spider button

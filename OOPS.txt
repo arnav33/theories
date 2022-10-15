@@ -1,0 +1,68 @@
+HLD: Diff infrastructure layers that work together to implement all the desired features of a software systems at desired efficiency.
+load balancer = api gateway + app servers + db + cache
+
+LLD: implementation of a software system
+    projects + packages + class + methods + variables
+
+LLD Steps
+    Gathering the requirements
+    Clarify the requirements
+    Design (Documentation / Design Docs)
+        Usecase diagram
+        Class diagram
+        Schema design
+    Code
+    Testing
+
+Engineering Ladder
+    Head of Engineering
+    Principal Engineer
+    Architect
+    Tech Lead
+    SD3
+    SD2: (LLD) Ability to work with fairly complex engineering problems with very minimum assistance on design
+    SD1: Ability to come-up with code with minimal help
+
+CTO, EM
+
+Types of LLD rounds
+    Theoritical: Similar to vivas in lab, what is singleton. OOPs, Design Pattern, Design Principle
+    LLD/OOPs round: Abstract problem statement
+    Machine Coding: Code should work end to end, they system should be tested, concurrency
+
+
+
+Code review (Reading code)
+meeting (gather / clarify requirements)
+Thinking / analysing: design
+Testing
+Bug fixes (Read code)
+Debugging (Read code)
+
+
+Creational
+Structural
+Behavioural
+
+Entity
+Games
+Real Systems
+LLD of engineering systems - ie distributed cavhe
+
+OOPS Termimology
+    classes
+    objects
+    fields
+    methods
+    members
+    state
+
+OOPS: Representation of complex system as a set of different ideas working together
+Pillars
+    Abstraction: an idea
+    Encapsulation: hold together, protect from illegitimate access from outside. class helps establishing Encapsulation, Encapsulation helps establishing abstractions
+    Inheritance
+    Polymorphism
+
+Overriding: remodifying the parent methods
+Overloading: same method with different signature

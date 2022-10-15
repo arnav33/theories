@@ -7,4 +7,8 @@ public class LCM {
         int lcm = (x * y) / gcd;
         return lcm;
     }
+
+    public static int lcmMinimized(int x, int y) {
+        return (x * y) / GCD.gcd(x, y);
+    }
 }

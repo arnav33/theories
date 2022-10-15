@@ -1,0 +1,220 @@
+Ask about env
+Ask about entities in the env and their types
+Details of entities
+
+Design pattern
+- Creational
+    - Factory
+        - Factory Method
+        - Abstract Factory
+    - Prototype
+        - A class / interface whose only purpose is to have factory methods
+    - Builder
+    - Singleton
+- Structural
+ - Adaptor: create an intermediary Interface (wrapper) and call it instead of directly calling external services
+ - Decorator: 
+    - a method that takes an object and other params. 
+    - decorates the object using the params. 
+    - returns the object back.
+ - Facade
+ - Flyweight
+    - create object factor map to reuse the already created objects
+    - uses registery design pattern
+ - Proxy
+- Behavioural
+ - Observer
+    - store a list of subscribers
+    - nottify the subscribers that an event have happened
+ - Strategy
+    - create strategy interface
+    - create implementations of the strategy
+    - create a context class get strategy in the constructor and call the method.
+
+
+
+-----------------------------------
+Design a pen
+
+Pen {write();}
+   BallPen
+      RefillableBallPen (<<Refillable>>)
+   GelPen (Refillable)
+      RefillableGelPen (<<Refillable>>)
+   FountainPen
+
+<<Refillable>> (changeRefill();)
+Refill
+   BallPenRefill
+   GelPenRefill
+
+Nib (radius)
+Ink (color, InkType)
+
+InkType (<<Enumeration>>)
+
+------------------------------------
+
+Design tick tok toe
+
+Player: abstract
+   Symbol
+   Type: Enum (Computer or Human)
+
+HumanPlayer extends Player
+   User
+
+Bot extends Player
+   IPlayingStrategy
+
+Symbol
+   char
+
+Board
+   Dimension
+   List<List<Cell>>
+
+Cell
+   row
+   col
+   Symbol: nullable
+
+Game
+   List<Player>
+   Board
+   List<Move>
+   List<WinningStrategy>
+   lastPlayer
+   gameStatus
+   winner
+
+Move
+   Symbol
+   Cell
+   Player
+
+WinningStrategy
+   checkIfWon(Move): boolean
+   NormalWinningStrategy
+   CornerWinningStrategy
+
+BotPlayingStrategy
+   nextMove(Board, Symbol): Cell
+
+EasyPlayingStrategy implements BotPlayingStrategy
+
+DifficultPlayingStrategy implements BotPlayingStrategy
+
+RandomPlayingStrategy implements BotPlayingStrategy
+
+--------------------------------------------------
+
+Snake and Lader
+
+Game
+   List<Player>
+   Board
+   Dice
+
+Player
+   List<PurrentPosition>
+   User
+   Status: QUIT, CURRENT_PLAYING, WON
+
+Board
+   int size;
+   List<Snake>
+   List<Ladder>
+   List<Frog>
+
+SpecialEntities
+   int start;
+   int end;
+   EntitiesType: FROG, SNAKE, LADDER;
+   getStartPosition();
+   getEndPosition();
+
+Snake extends SpecialEntities
+   int start;
+   int end;
+   getStart() {return start}
+   getEnd() {return end}
+Ladder extends SpecialEntities
+Frog extends SpecialEntities
+NextPrime extends SpecialEntities
+
+NextPrime
+   int start;
+   nextPrime(start)
+   getStart() {return start}
+   getEnd() {return end}
+
+IDice
+   roll();
+
+MyDyce implements IDice
+   roll() {return randum.Ind(6)}
+
+Services
+   Interface -> Adapter -> external services
+   Interface -> internal services
+
+-----------------------------------------
+
+Parking Lot Design
+
+ParkingLot
+   List<ParkingFloor>
+   Address
+   List<
+
+Gete (abstract)
+   gateNumber
+   Operator
+
+EntryGate implements EntryGate
+   DisplayBoard
+
+ExitGate implementations ExitGate
+
+ParkingFloor
+   List<ParkingSpot>
+   FloorNumber
+
+ParkingSpot
+   List<VehicleType>
+   Status
+   SpotNumber
+   Status: AVAILABLE, UNAVAILABLE
+
+ElectricParkingSpot extends ParkingSpot
+   ElectricCharger
+
+Vehicle
+   number
+   type
+
+Ticket
+   EntryTime
+   Vehicle
+   ParkingSpot
+   Operator generatedBy
+   Gate
+   PaymentStatus: UNPAID, PAID
+
+Bill
+   Ticket
+   amount
+   ExitTime
+   PaymentStatus
+
+Payment
+   referenceId
+
+UPIPayment extends Payment
+
+CardPayment extends Payment
+   cardNumber
+   cardNumber
+
+CashPayment  extends Payment

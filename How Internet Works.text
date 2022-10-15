@@ -1,0 +1,64 @@
+Internet cache for IP address resolution of a website
+1. browser
+2. OS
+3. Router
+4. ISP
+5. DNS
+
+DNS does a recursive search. i.e. go to '.' then go to 'com' then go to 'scaler'
+every part of the URL is a node of the tree
+
+Once an IP address is resolved, it connects to the server at the IP address using a TCP/IP connection also called TCP handshake
+
+TCP handshake
+1. Send a sync message to the server asking if it is open for connection
+2. If server is open, it will send acknoledgement sync/acknoledgement
+3. Client will send the acknoledgement packet back to the server
+
+Now communication between client and server happens using HTTP
+
+What is { "Connection": "Keep-Alive" }
+
+Cookies:
+- used for personalization of data
+- provides 4kb of data
+- cookie is shared automatically, bidirectionally
+- can set expiry
+
+what is cross-website cookie reading
+
+sessionStorage gets cleared the moment the browser is closed
+
+1xx - indicates an informational message only
+2zz - success
+3xx - Redirects the client to another URL
+4xx - err on client
+5xx - err on server
+
+When an HTML is encountered, browsers from a DOM
+
+HTML
+    head
+        script
+        link
+    body
+        div
+
+CSSOM: If a CSS file is encountered, it will associate with each HTML element
+If a js file is encountered, same thing happen as CSS
+
+HTML is rendered in the end, CSS ans JS file blocks the HTML rendering for until the files are loaded.
+
+defer and async can be used to make it non blocking (<script defer></script><script async></script>)
+
+defer: downloads html and js simultaneously, executes js only after both the files are downloads
+async: download happens parallely. The moment js file downloading is complete, html is blocked and execution starts. once execution is done, html starts downloading again
+
+static website: shows same result to every user
+dynamic website shows different result to different user
+
+how dows aws know which server to server
+route53: provides mapping, i.e., if staging env is hit, go to this server
+cloudfront (CDN)
+load balancer
+server: that runs the backend code

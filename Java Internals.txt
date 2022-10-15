@@ -1,0 +1,91 @@
+Data Types
+    Primitive (promotion, demotion(typecasting) - variables, default)
+        Integral (range, circularity)
+            type
+                byte: 1 byte = 8 bits
+                short: 2 byte = 16 bits
+                int: 4 byte = 32 bits
+                long: 8 bite = 64 bits
+            representation
+                -2^(n-1) to 2^(n-1) - 1
+                positive numbers are represented in binary
+                negative numbers are represented in 2's compliment of binaries
+        Floating
+            float
+            double
+        Other
+            char: 0: 48, A: 65, a: 97
+            boolean
+    Non-Primitive (Reference)
+        String
+            literal pool / interl pool
+
+Operators
+    >=, <=, ==, >, <. !=
+
+Generics
+    covariance: f(A) extends f(B)
+    contravarience
+    invarience
+
+Collection Primitives
+    List: Ordered
+    Set: Unique
+    Queue: FIFO
+    Map: key-value
+
+    Map
+        HashMap: 
+        LinkedHashMap: ordered keys
+        TreeMap:
+    Stack -> vector -> AbstractList -> AbstractCollection - thread safe
+    Collection
+        List
+            ArrayList: Indexed access
+            LinkedList: Direct index access not needed. Faster insert.
+            Vector: threadsafe. slower than arraylist.
+                Stack
+        Queue
+            LinkedList
+            ArrayDeque: insert / remove on both ends. not thread safe
+            PriorityQueue: ordered queueing
+        Set
+            HashSet: stores uniquely, searches in O(1)
+            TreeSet: ordered, thread safe
+            LinkedHashSet: ordered, thread unsafe
+
+Iterable
+Iterator
+Streams
+Consumers: (arg) => sout(arg)
+Supplier: () => return "Hello"
+Predicate: (arg) => return arg
+BiConsumer
+Bipredicate
+Runnable
+Comparable
+Comparator
+
+Program
+Process: memory, processing power are required at bare minimum. i/0 devices
+Process = Momory + Thread
+
+Executor Service Framework(task -> worker thread) -> OS Schedulars(software thread -> hardware thread) -> (SMT, HT)(cores -> cpu)
+Task: A unit of work
+SMT: Simultanious Multithreading
+MT: Multithreading
+Concurrency Frameworks run on every layer
+
+CPU = Control Unit (Which task, accessing the ram, accessing I/O devices, controlling clock) + Registers (an immediate memory) + cores(Calculations and Computaitons)
+cores = ALU + GPU + Neural Networks
+types of cores
+    SIMD: Single Instruction Multiple Data. Used by GPU
+    TPU: Tensor Processing Unit
+    ALU: Arithmetic Logic Units
+
+
+class loader & singleton pattern - how they work together
+nested interface and how to declare them
+call by value & reference
+HashMap internals
+Serilizable

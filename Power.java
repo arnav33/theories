@@ -3,10 +3,10 @@ public class Power {
 
     public static long fastPower(long base, long exponent) {
         long ans = 1;
-        while(exponent> 0) {
-            if(exponent% 2 == 1) ans = ans * base % mod;
+        while(exponent > 0) {
+            if(exponent % 2 == 1) ans = ans * base % mod;
             base = (base * base) % mod;
-            exponent/= 2;
+            exponent /= 2;
         }
         return ans;
     }

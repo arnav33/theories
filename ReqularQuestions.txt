@@ -1,0 +1,4 @@
+Histogram
+Prime
+LCM
+Power

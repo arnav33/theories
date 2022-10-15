@@ -1,0 +1,19 @@
+git init
+
+untracted changes: changes whose previous version is not available
+tracked changes: changes whose previous version is available
+
+git commit -m "First Commit"           // commits with just a message without signature
+git commit -sm "Second Commit"          // commits with a message and a signature (committer details)
+
+git status      // shows current changes - tracked and untracted both
+
+git add .
+git restore --staged git-and-hub.txt
+
+untracked
+    new file
+tracked
+    new changes in exi
+staged
+committed

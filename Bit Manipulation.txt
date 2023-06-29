@@ -1,0 +1,16 @@
+x * 2 = x << 1
+x * 4 = x << 2
+x * 2^i = x << i
+LSB: List Signification Bit
+LSB is 1 for odd and 0 for even
+x & 1 == 1: x is odd
+x & 1 == 0: x is even
+ith bit is set or not. keep right shifting the number until we have checked the ith number
+>>: right shifting
+<<: left shifting
+One's compliment: flip all bits
+Two's compliment: add 1 to One's compliment
+Two's compliment is used to represent negative of a number
+1 << k = 2 ^ k
+(x) & (x - 1) == 0 implies x is a power of 2
+x^x = 0. x0r cancils out a pair

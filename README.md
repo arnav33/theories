@@ -7,6 +7,8 @@ BinaryTree
 - In-order Traversal
 - Pre-order Traversal
 
+Bit Manipulation
+
 Combinatorica
 - Formulas
 - Pascals triangle

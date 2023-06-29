@@ -1,0 +1,20 @@
+1. Sequencial actions
+    - Action 1: m ways
+    - Action 2: n ways
+    - Total number of ways: m x n
+
+2. OR
+    - Task A: m ways
+    - Task B: n ways
+    - Total number of ways: m + n - overlap
+
+3. Combinations: Selection
+    - nCr = n!/r!(n - r)!
+    - nCr = nCn-r
+    - nC0 = 1
+    - nCn = 1
+    - nC1 = n
+    - 0! = 1
+    - nCr = n-1Cr-1 + n-1Cr: forms Pascal triangle
+    - nCr % m = (n-1Cr-1 + n-1Cr) % m
+    

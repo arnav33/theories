@@ -1,0 +1,54 @@
+Steps
+1. Figure out MVP (Functional requirement): Minimum set of features / functional requirements
+2. Estimate scale
+    1. Storage requirement for the system. Do we need to shard it or not?
+    2. Is it a read heavy system or a write heavy system?
+        - why?
+            - Read and write compete each other
+            - Till the writes are happening, the rows are locked (for example in case of sql) and reads are waiting. THis reduces the performance of reads.
+            - If system is either read heavy or write heavy, designing is easier. If it is both, read heavy and write heavy, it needs some jugad
+            - Systems like SQL are optimized for either read or write. Nothing is optimized for high volumes of both at the same time.
+    3. Query per second at peak. (We typically do not need to discuss it in interviews)
+        - why?
+            - Helps in provisioning machines: Let's say we will get 1 million requests per second and our machine can handle 1000 requests per second, we will need 1000 such machines.
+            - Evaluating costs
+            - Further if we can evaluate qps for read and qps for write, it helps evaluating the bottleneck. The bottleneck can be anything like memory, storage, cpu, etc
+3. Design Goal (Non Functional requirement)
+    - Are we building highly consistant or highly available system. Can you afford data loss or not.
+    - Latency
+4. List down, how is the external world going to use it. What API's are going to be exposed
+    - Let's say for bookmarks for delicious addBookmarks and getAllBookmarks for a userId APIs are going to be exposed, it helps us drive to a point that userId might be a good sharding key.
+    - Choice of the sharding key would depend upon what APIs we are exposing to the external world.
+    - Choice of Sharding key apims towards maximizing the performance of APIs exposed to the external world.
+5. Actual Design
+
+
+Consistency
+1. Eventually consistent: The type of inconstency from which we Eventually recover
+2. Data loss: The type of inconstency from which we never recover
+3. Highly consistent: The type of inconstency from which we immediately recover
+
+PACE|L theorem, in else case, latency and consistency competes
+
+Highly Available Systems
+Sampling: Let's not update the TRIE everytime, let's uptage at every 100th request. Why, because the pattern remain the same if we consider all data or a portion of data
+Threshold: Maintain data elsewhere and update the main data only after reaching a Threshold. It can be flushed at with a crone-job to clean not frequent data.
+LRU can be used as well and less frequent data can be flushed out
+
+
+crone-job
+Time Decay & Time Decay Factor: let's say we half all the frequency at a particular time of the day and then we increment the frequency by 1,
+today's count will take the weight 1, yesterday's 1/2, the day before yesterday 1/4 and so on.
+
+how database works internelly
+
+Idempotent: 
+
+Apache Lucene: for reverse indexing
+- character elimination
+- tokenization: entire input is broken down into words
+- Stemming / LameLemmatization: Root words are extracted
+- Reverse Indexing: HashMap of word to sentence
+
+
+Kibana does the log processing and at the backend it uses elastic search

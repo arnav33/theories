@@ -52,3 +52,21 @@ Apache Lucene: for reverse indexing
 
 
 Kibana does the log processing and at the backend it uses elastic search
+
+
+
+Questions
+1. design a URL shortening service
+2. Write psudocode of a load balancer
+3. Design a caching mechanism for a web application
+4. How would you design a notification system that can send emails, SMS, and push notifications?
+5. Write pseudocode for a rate limiter that restricts the number of requests per user per minute
+6. How would you design a fault-tolerant system? What components would you include?
+7. Design a real-time chat application. What technologies and design patterns would you use?
+8. How would you design a recommendation system for an e-commerce platform?
+9. Design a logging system that can handle millions of log entries per second.
+10. How would you design a system to detect and prevent fraud in online transactions?
+11. Design a Content Delivery Network (CDN) for a global audience.
+12. How would you implement search functionality for a large e-commerce platform?
+13. Describe how you would ensure data privacy and security in a multi-tenant SaaS application.
+14. How would you design a real-time analytics dashboard?

@@ -80,3 +80,5 @@ Java Internals
 - Basic theories of java
 
 HLD
+- Notes
+- Questions

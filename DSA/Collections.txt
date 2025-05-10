@@ -1,0 +1,88 @@
+Collections = Production grade implementation of widely known Data Structures
+
+What to know about data Structures. These aspects directly influence the performance of our application
+- What they are
+- Time complexities associated with each operations that we can perform on them
+- What algorithms they fit really well with
+
+
+Data Structures
+1. Arrays
+2. LinkedLists
+3. Trees
+4. HashTable / Dictionary
+
+
+Iterable
+- Collection
+    - List
+        - ArrayList
+            - About
+                - Array that can grow
+                - Elements are stored contiguously
+                - It can read in constant time using the index
+                - It is memory efficient
+            - Usases
+                - When random access is a more frequent operation
+                - When remove is a less frequent operation
+            - operations
+                - add
+                - remove (element or index) - takes n time complexity
+                - contains
+                - isEmpty
+                - clear
+        - LinkedList
+            - About
+                - Elements are stored as individual nodes spread into the memory and each node has a connection to the next node
+                - It implements List, Deque, Clonable and Serializable interfaces
+            - operations
+                - add
+                - remove (element or index)
+                - offer (add)
+                - poll (remove)
+                - push
+                - pop
+    - Set
+        - HashSet
+        - LinkedHashSet
+        - TreeSet
+    - Map
+        - HashMap
+            - About
+                - It is a look up table or hash table.
+                - It stores data as key-value pair
+                - A hash function is applied to evaluate a memory location where value is stored or going to be stored
+            - operations
+                - containsKey
+                - keySet
+                - values
+                - entrySet
+        - LinkedHashMap
+            - About
+                - Preserves insertion order
+        - TreeMap
+            - About
+                - Keeps the entries sorted by keys
+                - The order can be natural or customized using comparator
+            - operations
+                - higherEntry
+                - lowerEntry
+    - Queue
+        - PriorityQueue
+            - About
+                - It is a heap data Structure
+            - Syntax
+                - PriorityQueue<User> pq = new PriorityQueue<>(Comparator.comparing((User u) -> u.age));
+            - operations
+                - offer - logn
+                - poll - logn
+
+Collections
+- Collections.sort()
+- Collections.binarySearch(list, 4);
+- Collections.frequency(list, 3)
+- Collections.max(list)
+- Collections.min(list)
+- Collections.shuffle(list)
+- Collections.swap(list, 0, 1);
+- Collections.fill(list,1)

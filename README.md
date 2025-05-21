@@ -82,3 +82,8 @@ Java Internals
 HLD
 - Notes
 - Questions
+
+AWS
+- some basics
+- A PDF with comprehensive material for developer associate certification
+- cli commands

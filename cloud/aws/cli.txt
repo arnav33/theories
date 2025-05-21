@@ -1,0 +1,117 @@
+configuration
+- aws configure
+- aws configure --profile <profile-name>
+- aws configure set <name> <value> [--profile <profile-name>]
+- aws configure get <name> [--profile <profile-name>]
+- aws configure list [--profile <profile-name>]
+- --region <region>
+- --output <format>
+- --profile <profile-name>
+- --cli-connect-timeout <seconds>
+- --cli-read-timeout <seconds>
+- `--color <on
+- --debug
+
+iam users
+- aws iam create-user --user-name Alice
+- aws iam delete-user --user-name Alice
+- aws iam list-users
+- aws iam create-group --group-name Developers
+- aws iam add-user-to-group --user-name Alice --group-name Developers
+- aws iam remove-user-from-group --user-name Alice --group-name Developers
+- aws iam list-groups
+- aws iam create-policy --policy-name MyPolicy --policy-document file://policy.json
+- aws iam attach-user-policy --user-name Alice --policy-arn arn:aws:iam::123456789012:policy/MyPolicy
+- aws iam detach-user-policy --user-name Alice --policy-arn arn:aws:iam::123456789012:policy/MyPolicy
+- aws iam list-attached-user-policies --user-name Alice
+- aws iam delete-access-key --user-name Alice --access-key-id AKIAIOSFODNN7EXAMPLE
+- aws iam list-access-keys --user-name Alice
+- aws iam update-login-profile --user-name Alice --password NewPassword123!
+- aws iam get-user --user-name Alice
+
+iam roles
+- aws iam create-role --role-name MyRole --assume-role-policy-document file://trust-policy.json
+- aws iam delete-role --role-name MyRole
+- aws iam list-roles
+- aws iam get-role --role-name MyRole
+- aws iam attach-role-policy --role-name MyRole --policy-arn arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
+- aws iam detach-role-policy --role-name MyRole --policy-arn arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
+- aws iam list-attached-role-policies --role-name MyRole
+
+IAM Instance Profiles
+- aws iam create-instance-profile --instance-profile-name MyInstanceProfile
+- aws iam delete-instance-profile --instance-profile-name MyInstanceProfile
+- aws iam add-role-to-instance-profile --instance-profile-name MyInstanceProfile --role-name MyRole
+- aws iam remove-role-from-instance-profile --instance-profile-name MyInstanceProfile --role-name MyRole
+- aws iam list-instance-profiles
+- aws iam get-instance-profile --instance-profile-name MyInstanceProfile
+
+IAM Policies
+- aws iam create-policy --policy-name MyPolicy --policy-document file://policy.json
+- aws iam delete-policy --policy-arn arn:aws:iam::123456789012:policy/MyPolicy
+- aws iam list-policies --scope Local
+- aws iam get-policy --policy-arn arn:aws:iam::123456789012:policy/MyPolicy
+- aws iam get-policy-version --policy-arn arn:aws:iam::123456789012:policy/MyPolicy --version-id v1
+- aws iam create-policy-version --policy-arn arn:aws:iam::123456789012:policy/MyPolicy --policy-document file://policy.json --set-as-default
+- aws iam list-attached-user-policies --user-name Alice
+- aws iam list-attached-role-policies --role-name MyRole
+
+
+s3api
+- aws s3api create-bucket --bucket name
+- aws s3api delete-bucket --bucket name
+- aws s3api list-buckets
+- aws s3api list-objects --bucket name
+- aws s3api put-object --bucket name --key key
+- aws s3api get-object --bucket name --key key
+- aws s3api delete-object --bucket name --key key
+- aws s3api head-object --bucket name --key key
+- aws s3api copy-object --bucket dest-bucket --copy-source source-bucket/source-key --key dest-key
+- aws s3api put-bucket-policy --bucket name --policy file://policy.json
+- aws s3api get-bucket-policy --bucket name
+- aws s3api put-bucket-lifecycle-configuration --bucket name --lifecycle-configuration file://config.json
+- aws s3api get-bucket-lifecycle-configuration --bucket name
+
+s3
+- aws s3 ls
+- aws s3 mb s3://bucket-name
+- aws s3 rb s3://bucket-name
+- aws s3 cp /path/to/local-file.txt s3://example-bucket/folder/file.txt
+- aws s3 mv s3://example-bucket/old-file.txt s3://example-bucket/new-file.txt
+- aws s3 rm s3://bucket-name/key
+- aws s3 sync /local/folder s3://example-bucket/folder
+- aws s3 presign s3://bucket/key
+
+lambda
+- aws lambda create-function --function-name MyFunction --runtime python3.9 --role arn:aws:iam::123456789012:role/MyRole --handler lambda_function.lambda_handler --zip-file fileb://function.zip
+- aws lambda delete-function --function-name MyFunction
+- aws lambda invoke --function-name MyFunction output.txt
+- aws lambda list-functions
+- aws lambda update-function-code --function-name MyFunction --zip-file fileb://function.zip
+- aws lambda update-function-configuration --function-name MyFunction --memory-size 512
+- aws lambda get-function --function-name MyFunction
+- aws lambda add-permission --function-name MyFunction --statement-id Sid123 --action lambda:InvokeFunction --principal s3.amazonaws.com --source-arn arn:aws:s3:::example-bucket
+- aws lambda remove-permission --function-name MyFunction --statement-id Sid123
+- aws lambda list-event-source-mappings --function-name MyFunction
+
+ec2
+- aws ec2 describe-instances
+- aws ec2 start-instances --instance-ids i-0123456789abcdef0
+- aws ec2 stop-instances --instance-ids i-0123456789abcdef0
+- aws ec2 reboot-instances --instance-ids i-0123456789abcdef0
+- aws ec2 terminate-instances --instance-ids i-0123456789abcdef0
+- aws ec2 describe-volumes --filters Name=attachment.instance-id,Values=i-0123456789abcdef0
+- aws ec2 create-volume --availability-zone us-east-1a --size 10 --volume-type gp2
+- aws ec2 attach-volume --volume-id vol-0123456789abcdef0 --instance-id i-0123456789abcdef0 --device /dev/sdf
+- aws ec2 describe-route-tables
+- aws ec2 create-security-group --group-name MySecurityGroup --description "My security group"
+- aws ec2 authorize-security-group-ingress --group-id sg-0123456789abcdef0 --protocol tcp --port 22 --cidr 0.0.0.0/0
+- aws ec2 describe-key-pairs
+
+apigateway
+- aws apigateway create-api-key --name "DevAPIKey" --description "Development key" --enabled --stage-keys restApiId="a1b2c3d4e5",stageName="dev"
+- aws apigateway create-authorizer --rest-api-id 1234123412 --name "MyTokenAuthorizer" --type TOKEN --authorizer-uri "arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:123456789012:function:authFunction/invocations" --identity-source "method.request.header.Authorization"
+- aws apigateway create-base-path-mapping --domain-name "api.example.com" --rest-api-id 1234123412 --stage prod --base-path v1
+- aws apigateway create-deployment --rest-api-id 1234123412 --stage-name prod
+- aws apigateway get-account
+- aws apigateway get-api-key --api-key 8bklk8bl1k3sB38D9B3l0enyWT8c09B30lkq0blk

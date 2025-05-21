@@ -1,0 +1,8 @@
+CodeCommit - Source control
+CodeBuild - build
+CodePipeline - pipeline orchestration
+CodeDeploy - deployment automation
+ECR - container registery
+CloudFormation - Infrastructure as code
+CloudWatch - logging and monitoring
+Beanstalk - Application Deployment & Management

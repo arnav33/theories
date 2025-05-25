@@ -101,34 +101,13 @@ Transaction Commands
 - t.exec() — Execute transaction.
 
 Use cases
-1. Session Store
-- Redis efficiently stores user session data in web applications, enabling fast retrieval and scalability across stateless servers.
-- Ensures seamless user experiences by keeping session state centralized.
-
-2. Real-Time Analytics
-- Redis processes and aggregates real-time data such as website visits, user interactions, or product views.
-- Supports fast queries and counters for live dashboards and monitoring.
-
-3. Message Queues and Pub/Sub
-- Redis Lists and Streams can implement reliable message queues for background job processing.
-- Pub/Sub enables real-time notifications and chat applications.
-
-4. Distributed Locks
-- Redis strings and commands like SETNX help implement distributed locks to coordinate access to shared resources in distributed systems.
-
-5. Leaderboards and Counting
-- Sorted Sets provide efficient ranking systems for gaming leaderboards or priority queues.
-- Atomic increment/decrement operations enable counters for likes, views, or rate limiting.
-
-6. Search and Secondary Indexing
-- Redis supports creating secondary indexes and real-time search capabilities over JSON documents and hashes.
-- Enables geo-distributed and unified search across multiple data sources.
-
-7. Real-Time Inventory and Pricing
-- Retail and e-commerce systems use Redis for fast, accurate inventory lookups and dynamic pricing decisions.
-
-8. Ephemeral Data and Session-Specific Indexes
-- Temporary, user-specific full-text indexes can be created and expired dynamically, useful for personalized search during user sessions.
-
-9. Geospatial Data
-- Redis supports geospatial indexes and queries, enabling location-based services like ride-hailing or store locators.
+- Caching: Fast data retrieval to reduce database load
+- Session Management: Store and manage user sessions
+- Real-Time Analytics: Track and analyze live data
+- Message Queues / Pub-Sub: Background jobs and real-time notifications
+- Distributed Locking: Coordinate access in distributed systems
+- Leaderboards: Ranking systems using sorted sets
+- Search & Secondary Index: Real-time search and indexing over data
+- Real-Time Inventory: Fast product availability and pricing queries
+- Ephemeral Search Indexes: Temporary user-specific indexes
+- Geospatial Queries: Location-based data and queries

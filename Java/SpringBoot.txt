@@ -1,0 +1,146 @@
+You do not need to specify a version explicitly because Spring Boot manages the Spring Security version through its BOM (Bill of Materials)
+
+Starters
+- Actuator: Monitor or manage your application. health checks, metrics, autditing and environment info
+    Features
+    - /actuator/health
+    - /actuator/metrices
+    - /actuator/env
+    - /actuator/beans
+    - /actuator/info
+    - /actuator/httptrace
+    Configuration
+    - Secured by default
+    - You can disable security or customize it via properties like management.security.enabled=false (older versions) or use Spring Security configurations for fine-grained control.
+
+- Security
+    Features
+    - Default security configuration with HTTP Basic authentication.
+    - Form-based login support.
+    - Protection against common vulnerabilities like CSRF.
+    - Integration with Spring MVC or Spring WebFlux.
+    - Auto-configuration of security filters and user details service.
+    - If your application requires additional security features such as LDAP, OAuth2, or OpenID Connect, you need to include their specific dependencies alongside the starter.
+    - Security customization
+        - SecurityFilterChain: recent
+        - WebSecurityConfigurerAdapter : old
+
+- Web
+    Annotations
+    - Controller: Marks a class as a Spring MVC controller to handle web requests and return views.
+    - RestController: A convenience annotation combining @Controller and @ResponseBody. It marks a class as a RESTful controller where methods return JSON/XML directly.
+    - RequestMapping: Maps HTTP requests to handler methods or classes. Can specify URL path, HTTP method, headers, params, etc.
+    - GetMapping: Shortcut for @RequestMapping(method = RequestMethod.GET). Maps HTTP GET requests.
+    - PostMapping: Shortcut for @RequestMapping(method = RequestMethod.POST). Maps HTTP POST requests.
+    - PutMapping: Shortcut for @RequestMapping(method = RequestMethod.PUT). Maps HTTP PUT requests.
+    - DeleteMapping: Shortcut for @RequestMapping(method = RequestMethod.DELETE). Maps HTTP DELETE requests.
+    - PatchMapping: Shortcut for @RequestMapping(method = RequestMethod.PATCH). Maps HTTP PATCH requests.
+    - RequestBody: Binds the HTTP request body to a method parameter, typically to convert JSON/XML into a Java object.
+    - ResponseBody: Indicates that the return value of a method should be bound to the web response body (usually JSON/XML).
+    - PathVariable: Binds a URI template variable to a method parameter. Useful for RESTful URL segments.
+    - RequestParam: Binds a query parameter from the URL to a method parameter.
+    - RequestHeader: Binds a specific HTTP header value to a method parameter.
+    - RequestAttribute: Accesses request attributes (set server-side) in a controller method parameter.
+    - CookieValue: Binds the value of an HTTP cookie to a method parameter.
+    - CrossOrigin: Enables Cross-Origin Resource Sharing (CORS) on controller classes or methods, allowing cross-domain requests.
+    - ControllerAdvice: Defines global exception handling and controller advice across multiple controllers.
+    - ExceptionHandler: Defines a method to handle specific exceptions thrown by controller methods.
+
+- Thyme Leaf: Provides Thymeleaf support in Spring Boot applications, allowing you to create web pages with dynamic content by combining HTML templates and Java data models.
+
+- Test
+    Libraries and Modules
+    - It provides a comprehensive set of testing libraries and utilities to support unit testing, integration testing, and mocking, all pre-configured and managed by Spring Boot.
+    - It includes
+        - JUnit 5 (JUnit Jupiter): The main testing framework.
+        - Spring Test & Spring Boot Test: Utilities and support for integration testing with Spring context.
+        - AssertJ: Fluent assertion library for readable assertions.
+        - Hamcrest: Matcher library for flexible assertions.
+        - Mockito: Popular mocking framework for creating mock objects.
+        - JSONassert: For asserting JSON content.
+        - JsonPath: For querying JSON documents.
+        - Awaitility: For testing asynchronous code.
+    Features
+    - Supports both unit and integration testing.
+    - Provides annotations like @SpringBootTest to bootstrap the full Spring context for integration tests.
+    - Supports slicing tests with annotations like @WebMvcTest, @DataJpaTest, etc., to load only parts of the context.
+    - Auto-configures MockMvc for testing Spring MVC controllers without starting a server.
+    - Integrates with Spring’s testing support for dependency injection and transaction management.
+    - Manages versions of all included libraries, so you don’t have to specify versions manually.
+    - Supports JUnit 4 tests via the JUnit Vintage engine if needed (though this is no longer included by default in recent Spring Boot versions).
+    Usage
+    - Write unit tests with JUnit and Mockito to test individual components.
+    - Write integration tests using @SpringBootTest to test the application context and real components.
+    - Use @MockBean to mock Spring beans in integration tests.
+    - Use MockMvc to test web layer controllers.
+    Annotations
+    - SpringBootTest
+        - Loads the full application context for integration testing
+        - It boots up the entire Spring Boot application context, allowing you to @Autowire any bean and test end-to-end scenarios.
+        - You can customize the web environment with attributes like webEnvironment = WebEnvironment.RANDOM_PORT to start an embedded server on a random port
+    - WebMvcTest
+        - Loads only the Spring MVC components (controllers, controllers advice, filters, etc.) for testing the web layer without starting the full application context.
+        - It is typically used to test a single controller or a set of controllers
+        - Other dependencies like services are usually mocked using @MockBean
+    - DataJpaTest
+        - Configures an in-memory database, JPA repositories, and related components for testing the persistence layer.
+        - It disables full auto-configuration and loads only JPA-related beans.
+        - Often used with @AutoConfigureTestDatabase to control database replacement behavior
+    - TestConfiguration
+        - Defines additional beans or overrides beans specifically for testing purposes.
+        - Can be used as a static inner class inside test classes or as a separate configuration class
+    - MockBean
+        - Creates and injects a Mockito mock into the Spring application context, replacing the original bean.
+        - Useful to mock dependencies in slice tests like @WebMvcTest or integration tests
+    - SpyBean
+        - Similar to @MockBean, but creates a Mockito spy instead of a mock, allowing partial mocking of real beans.
+    Spring Framework Annotations
+    - RunWith(SpringRunner.class) (JUnit 4 only)
+        - Integrates the Spring TestContext Framework into JUnit 4 tests. 
+        - Not needed for JUnit 5 as @SpringBootTest and other Spring Boot test annotations include the necessary extensions
+    - ExtendWith(SpringExtension.class) (JUnit 5 only)
+        - Used to enable Spring support in JUnit 5 tests
+        - Included transitively by Spring Boot test annotations like @SpringBootTest.
+    - Transactional: Runs each test method within a transaction that is rolled back after the test completes, ensuring test isolation
+    - AutoConfigureMockMvc
+        - Auto-configures MockMvc for testing Spring MVC controllers without starting a server.
+        - Used with @SpringBootTest or standalone
+    - AutoConfigureTestDatabase
+        - Controls the replacement of the real database with an embedded test database during JPA tests.
+        - For example, @AutoConfigureTestDatabase(replace = Replace.NONE) disables replacement to use the real database
+
+Others
+- SpringBootApplication: Indicates a Spring Boot application entry point. It combines configuration, component scanning, and auto-configuration.
+    - EnableAutoConfiguration: Enables Spring Boot’s auto-configuration mechanism to automatically configure beans based on classpath settings, other beans, and various property settings.
+    - ComponentScan: Enables scanning for Spring components (@Component, @Service, @Controller, etc.) within the package and sub-packages.
+    - SpringBootConfiguration: Specialized form of @Configuration indicating this is a Spring Boot configuration class.
+- RestController: Marks a class as a RESTful web controller where every method returns a domain object instead of a view.
+    - Controller: Marks the class as a Spring MVC controller.
+    - ResponseBody: Indicates that the return value of methods should be bound to the web response body (usually JSON or XML).
+- EnableWebSecurity: Enables Spring Security’s web security support and provides integration with Spring MVC.
+    - Configuration: Marks the class as a source of bean definitions.
+    - EnableGlobalAuthentication: Enables global authentication configuration.
+    - Import(imports WebSecurityConfiguration, SpringWebMvcImportSelector): Imports Spring Security configurations necessary for web security.
+- SpringBootTest: Annotation for integration testing that loads the full Spring Boot application context.
+    - BootstrapWith(SpringBootTestContextBootstrapper.class): Specifies how to bootstrap the test context.
+    - ExtendWith(SpringExtension.class): Integrates Spring TestContext Framework with JUnit 5.
+    - ContextConfiguration: Specifies how to load and configure the ApplicationContext for tests.
+- EnableScheduling: Enables Spring’s scheduled task execution capability.
+    - Configuration: Marks the class as a configuration class.
+    - Import(ScheduledAnnotationBeanPostProcessor.class): Imports the bean post-processor that handles @Scheduled annotations.
+- EnableAsync: Enables Spring’s asynchronous method execution capability.
+    - Configuration: Marks the class as a configuration class.
+    - Import(AsyncConfigurationSelector.class): Imports configuration to enable async processing.
+- EnableCaching: Enables Spring’s annotation-driven cache management capability.
+    - Configuration: Marks the class as a configuration class.
+    - Import(CachingConfigurationSelector.class): Imports cache management configuration.
+- EnableJpaRepositories: Enables JPA repositories and scans the specified package for interfaces extending JpaRepository.
+    - Configuration: Marks the class as a configuration class.
+    - Import(JpaRepositoriesRegistrar.class): Imports the registrar that registers JPA repositories.
+    - EnableRepositories: Meta-annotation that provides repository scanning and configuration.
+- EnableTransactionManagement: Enables Spring’s annotation-driven transaction management.
+    - Configuration: Marks the class as a configuration class.
+    - Import(TransactionManagementConfigurationSelector.class): Imports transaction management configuration.
+- EnableAutoConfiguration: Enables Spring Boot’s auto-configuration mechanism.
+    - AutoConfigurationPackage: Registers the package of the annotated class for component scanning.
+    - Import(AutoConfigurationImportSelector.class): Imports auto-configuration classes based on classpath and property conditions.

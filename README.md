@@ -32,7 +32,9 @@ Histgram
 
 How Internet works
 
-Java Internals
+Java
+- Java Internals
+- Spring Boot
 
 Javascript
 
@@ -87,3 +89,5 @@ AWS
 - some basics
 - A PDF with comprehensive material for developer associate certification
 - cli commands
+- LambdaServices class
+- S3Services class

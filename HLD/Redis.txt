@@ -1,0 +1,134 @@
+About
+- Redis is an open-source, in-memory data structure store widely used as a database, cache, and message broker.
+- It is designed for high performance, scalability, and flexibility, supporting various data types and operations.
+
+What is Redis?
+- In-memory key-value store: Redis stores data primarily in memory, making data access extremely fast compared to disk-based databases.
+- Data structures: Unlike simple key-value stores, Redis supports rich data types such as strings, lists, sets, sorted sets, hashes, bitmaps, hyperloglogs, and streams.
+- Use cases: Caching, session management, real-time analytics, leaderboards, messaging queues, rate limiting, and more.
+- Persistence: Though in-memory, Redis supports optional persistence by periodically saving data to disk or appending changes to a log file.
+- Single-threaded but fast: Redis uses a single-threaded event loop but achieves high throughput through efficient data structures and I/O multiplexing.
+
+Core Redis Data Types and Commands
+1. Strings
+- Basic key-value pairs storing text or binary data.
+- Commands: SET key value, GET key, INCR key (increment), APPEND key value.
+
+2. Lists
+- Ordered collections of strings, allowing push/pop operations at both ends.
+- Commands: LPUSH key value, RPUSH key value, LPOP key, LRANGE key start stop.
+
+3. Sets
+- Unordered collections of unique strings.
+- Support fast membership checks and set operations like union, intersection.
+- Commands: SADD key member, SMEMBERS key, SISMEMBER key member.
+
+4. Sorted Sets
+- Like sets but each member has an associated score, allowing sorted order.
+- Useful for leaderboards, priority queues.
+- Commands: ZADD key score member, ZRANGE key start stop WITHSCORES.
+
+5. Hashes
+- Key-value pairs within a key, like a JSON object or map.
+- Commands: HSET key field value, HGET key field, HGETALL key.
+
+6. HyperLogLog
+- Probabilistic data structure for counting unique elements approximately using very little memory.
+- Commands: PFADD key element, PFCOUNT key.
+
+Features and Benefits
+- High performance: Data access in microseconds due to in-memory storage.
+- Atomic operations: Commands are executed atomically, ensuring data consistency.
+- Pub/Sub messaging: Supports publish-subscribe messaging pattern for real-time communication.
+- Transactions: Supports multi-command transactions.
+- Persistence options: RDB snapshots and AOF (Append Only File) for durability.
+- Replication and clustering: Supports master-slave replication and sharding for scalability and fault tolerance.
+
+Getting Started
+- Install Redis on your system.
+- Start Redis server (usually runs on port 6379).
+- Use redis-cli to interact with Redis via command line.
+- Connect Redis to your application using client libraries available in many programming languages.
+
+Commands
+try (Jedis jedis = new Jedis("localhost", 6379)) {}
+String Commands
+- jedis.set(key, value) — Set string value.
+- jedis.get(key) — Get string value.
+- jedis.incr(key) — Increment integer value.
+- jedis.decr(key) — Decrement integer value.
+- jedis.append(key, value) — Append to string.
+
+List Commands
+- jedis.lpush(key, value...) — Push elements to the head of the list.
+- jedis.rpush(key, value...) — Push elements to the tail of the list.
+- jedis.lpop(key) — Pop element from the head.
+- jedis.rpop(key) — Pop element from the tail.
+- jedis.lrange(key, start, stop) — Get a range of elements.
+- jedis.llen(key) — Get list length.
+
+Set Commands
+- jedis.sadd(key, member...) — Add members to a set.
+- jedis.smembers(key) — Get all members.
+- jedis.srem(key, member...) — Remove members.
+- jedis.sismember(key, member) — Check membership.
+
+Sorted Set Commands
+- jedis.zadd(key, score, member) — Add member with score.
+- jedis.zrange(key, start, stop) — Get range by rank.
+- jedis.zrem(key, member...) — Remove members.
+- jedis.zscore(key, member) — Get score of member.
+
+Hash Commands
+- jedis.hset(key, field, value) — Set field in hash.
+- jedis.hget(key, field) — Get field value.
+- jedis.hgetAll(key) — Get all fields and values.
+- jedis.hdel(key, field...) — Delete fields.
+
+Key Commands
+- jedis.del(key) — Delete key.
+- jedis.exists(key) — Check if key exists.
+- jedis.expire(key, seconds) — Set TTL for key.
+- jedis.ttl(key) — Get TTL.
+
+Pub/Sub Commands
+- jedis.publish(channel, message) — Publish message.
+- jedis.subscribe(listener, channels...) — Subscribe to channels.
+
+Transaction Commands
+- Transaction t = jedis.multi() — Start transaction.
+- t.set(key, value) — Queue commands.
+- t.exec() — Execute transaction.
+
+Use cases
+1. Session Store
+- Redis efficiently stores user session data in web applications, enabling fast retrieval and scalability across stateless servers.
+- Ensures seamless user experiences by keeping session state centralized.
+
+2. Real-Time Analytics
+- Redis processes and aggregates real-time data such as website visits, user interactions, or product views.
+- Supports fast queries and counters for live dashboards and monitoring.
+
+3. Message Queues and Pub/Sub
+- Redis Lists and Streams can implement reliable message queues for background job processing.
+- Pub/Sub enables real-time notifications and chat applications.
+
+4. Distributed Locks
+- Redis strings and commands like SETNX help implement distributed locks to coordinate access to shared resources in distributed systems.
+
+5. Leaderboards and Counting
+- Sorted Sets provide efficient ranking systems for gaming leaderboards or priority queues.
+- Atomic increment/decrement operations enable counters for likes, views, or rate limiting.
+
+6. Search and Secondary Indexing
+- Redis supports creating secondary indexes and real-time search capabilities over JSON documents and hashes.
+- Enables geo-distributed and unified search across multiple data sources.
+
+7. Real-Time Inventory and Pricing
+- Retail and e-commerce systems use Redis for fast, accurate inventory lookups and dynamic pricing decisions.
+
+8. Ephemeral Data and Session-Specific Indexes
+- Temporary, user-specific full-text indexes can be created and expired dynamically, useful for personalized search during user sessions.
+
+9. Geospatial Data
+- Redis supports geospatial indexes and queries, enabling location-based services like ride-hailing or store locators.

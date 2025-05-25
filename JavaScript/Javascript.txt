@@ -1,65 +1,104 @@
-js is a functional programming language
-everything in js is object
-loosely typed language
+About
+- js is a functional programming language
+- everything in js is object
+- loosely typed language
 
 Primitive Data types
-string
-number
-boolean
-null
-undefined
+- null
+- undefined
+- boolean
+- number
+- string
+- symbol - available from ES2015
+- bigint - available from ES2020
 
-typeof 'hello'
 
-var a = null;
-typeof(a) // object
+operators
+- typeof
+    - typeof 'hello' // 'string'
+    - typeof('hello') // 'string'
+    - typeof(null) // 'object'
 
-var a = 2;
-var b = '2';
-a == b // true, type cohersion
+cocepts
+- Type Coercion: JavaScript automatically changes one type of value into another. 
+    - Automatic Conversion: When required, the JavaScript automatically converts required data types.
+    - Works with Three Types: String, Number, and Boolean coercion.
+    - Can Lead to Unexpected Results: If they are not handled properly, they may cause unintended bugs.
+    - Implicitly Occurs: Automatically converts the type of the value from one to another.
+    - Priority: string > number > boolean
+    - 2 == '2' // true
+    - types
+        - Implicit
+        - Explicit: Number("5")
+- iife: immediately invoked function expression. (function a() {})();
+- prototypal inheritance: inheritance in js happens through prototype
+    - concepts
+        - Prototype Chain: Objects are linked in a chain via their prototypes. If a property is not found on the current object, the search continues up the chain.
+        - Delegation: Instead of copying properties, objects delegate property access to their prototype.
+        - Object Inheritance: Objects inherit directly from other objects, not classes.
+        - Differential Inheritance: Properties are not copied but linked, so changes to the prototype affect all inheriting objects.
+    - How to Set Up Prototypal Inheritance
+        - child.__proto__ = parent;     // creates object level methods
+        - Person.prototype.greet = function() { console.log(`Hello, my name is ${this.name}`); };   // create class level methods
+    - prototype creates class level method
+    - dunder proto creates object level method
+- hoisting: Hoisting in JavaScript is a behavior where declarations of variables, functions, classes, or imports are conceptually moved ("hoisted") to the top of their containing scope before the code executes. 
+- closure: A closure in JavaScript is a function that retains access to its lexical environment, meaning it "remembers" the variables and parameters from its outer (enclosing) function scope even after that outer function has finished executing
+- Automatic Semicolon Insertion (ASI): Use brackets / blocks start on the same line, not different line;
+- call
+    - Use call() when you want to call a function with a specific this and separate arguments.
+    - Invokes the function immediately.
+    - Accepts the this context as the first argument.
+    - Subsequent arguments are passed one by one (comma-separated).
+    - func.call(thisArg, arg1, arg2, ...);
+- apply
+    - Use apply() when you have arguments as an array or array-like object.
+    - Invokes the function immediately.
+    - Accepts the this context as the first argument.
+    - Arguments are passed as an array or array-like object.
+    - func.apply(thisArg, [arg1, arg2, ...]);
+- bind
+    - Use bind() when you want to create a function with a fixed this context for later use, such as in event handlers or callbacks.
+    - Does not invoke the function immediately.
+    - Returns a new function with this bound to the provided context.
+    - Allows you to pass arguments one by one or partially apply arguments.
+    - The returned function can be called later.
+- Event bubbling: a type of event propagation in the DOM where an event triggered on a specific (innermost) element first runs its event handler, then successively triggers the same event handlers on its parent elements, moving up the DOM tree until it reaches the outermost element (like <html> or document)
+- Event capturing: the first phase of the event propagation process in the DOM, where an event travels from the root of the document down to the target element before the event actually occurs on the target
+- EventListener: is a function or procedure that waits for and responds to specific events occurring on HTML elements, the document, or other DOM objects.
 
-type cohersion - implicit and explicit
-
-function declaration
-function a() {};
-
-function expression
-var a = function() {}
-
-iife - immediately invoked function expression
-(function a() {}){};
-
-prototypal inheritance: inheritance in js happens through prototype
-
-Use brackets / blocks start on the same line, not different line;
-i.e.
- return {
-
- }
- not
- return
- {
-
- }
-
-hoisting
-
-prototype creates class level method
-dunder proto creates object level method
-
-hoisting
-closure
-
-bind call apply
-bind: changes the current context (this) to another object 
-call: binds and call, params are comma separated
-apply: same as call, params are array not comma seperated
-
-event loop
-EventListener
-
-bubbling, capcturing
-true: capturing,
-false: bubbling
-default: false
-spider button
+Internals
+- Call Stack
+    - The call stack is a data structure that keeps track of function calls in the order they are invoked.
+    - When a function is called, it is pushed onto the top of the stack.
+    - When the function finishes execution, it is popped off the stack.
+    - JavaScript executes code synchronously by running one function at a time on this stack.
+    - If the stack is busy (e.g., running a long loop), no other code can run until it’s empty.
+- Event Queue (Callback Queue / Task Queue)
+    - The event queue is where asynchronous callbacks (like those from setTimeout, DOM events, or I/O operations) wait to be executed.
+    - When an asynchronous operation completes, its callback is placed in the event queue.
+    - The event queue follows a FIFO (First In, First Out) order.
+    - Callbacks in the queue cannot run immediately; they must wait until the call stack is empty.
+- Microtask Queue
+    - A special queue for microtasks, which include promise callbacks (.then(), .catch()) and mutation observers.
+    - Microtasks have higher priority than regular tasks in the event queue.
+    - After the call stack is empty, the event loop processes all microtasks before moving on to macrotasks (regular event queue tasks).
+- Event Loop
+    - The event loop is a continuously running process that monitors the call stack and the event queues.
+    - Its job is to:
+        - Check if the call stack is empty.
+        - If empty, take the first task from the microtask queue and execute it.
+        - Once the microtask queue is empty, take the first task from the macrotask (event) queue and push it onto the call stack.
+    - This mechanism allows JavaScript to perform non-blocking asynchronous operations despite being single-threaded.
+- How They Work Together: Example Flow
+    - Synchronous code runs first, pushing functions onto the call stack.
+    - When an asynchronous function like setTimeout is called, the timer is handled outside JavaScript (e.g., by browser Web APIs).
+    - After the timer expires, the callback is pushed into the macrotask queue.
+    - The event loop waits for the call stack to be empty.
+    - Once empty, it processes all microtasks (promise callbacks).
+    - Then it takes the next macrotask from the event queue and pushes it onto the call stack to execute.
+- Why This Matters
+    - Explains why setTimeout(..., 0) runs after synchronous code.
+    - Clarifies how promises are prioritized over other async callbacks.
+    - Helps avoid blocking the UI by understanding how heavy synchronous code delays async tasks.
+    - Enables writing efficient, responsive JavaScript applications.

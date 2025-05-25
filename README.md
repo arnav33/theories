@@ -84,6 +84,8 @@ Java Internals
 HLD
 - Notes
 - Questions
+- Kafka
+- Redis
 
 AWS
 - some basics

@@ -1,0 +1,66 @@
+About
+- Kafka is a distributed event streaming framework originally developed by LinkedIn.
+- It enables publish-subscribe messaging, where producers publish events (messages) to topics, and consumers subscribe to those topics to process the events.
+- Kafka stores events in an ordered, immutable log called a topic partition, ensuring message order within partitions.
+- It supports horizontal scalability by distributing partitions across multiple servers called brokers.
+- Kafka is designed for high availability, fault tolerance, and durability through replication of partitions.
+- Yes, Apache Kafka is a messaging service, specifically a distributed publish-subscribe based durable messaging system.
+- It enables applications to send (produce) and receive (consume) messages through topics, which act as categories or feeds for the messages.
+
+Core concepts
+- Broker: A Kafka server that stores data and serves clients. Multiple brokers form a Kafka cluster.
+- Topic: A category or feed name to which messages are published. Topics are split into partitions.
+- Partition: A topic is divided into partitions for scalability and parallelism. Each partition is an ordered log.
+- Producer: Client application that publishes messages to Kafka topics.
+- Consumer: Client application that subscribes to topics and processes messages.
+- Offset: A unique sequential ID assigned to messages within a partition, used to track consumption.
+- Replication: Kafka replicates partitions across brokers to ensure fault tolerance.
+
+How Kafka Works
+- Producers send messages to a topic. Messages may have keys to determine which partition they go to, preserving order for messages with the same key.
+- Kafka stores messages in partitions on brokers as immutable logs.
+- Consumers pull messages from partitions and process them. They track their position using offsets.
+- Kafka uses Zookeeper (or newer Kafka Raft metadata mode) for cluster coordination and managing broker metadata.
+- Kafka supports stream processing via its Streams API and integrates with tools like Apache Spark, Flink, and Storm.
+
+Key Features
+- High throughput and low latency for real-time data streaming.
+- Durability: Messages are persisted to disk and replicated.
+- Scalability: Easily add brokers and partitions to scale.
+- Fault tolerance: Automatic failover and replication.
+- Ordering guarantees within partitions.
+- Multiple consumers can read from the same topic independently.
+
+Typical Use Cases
+- Real-time analytics and monitoring.
+- Log aggregation.
+- Event sourcing and CQRS architectures.
+- Data integration pipelines.
+- Messaging backbone for microservices.
+
+Getting Started: Basic Steps
+- Install Java (Kafka runs on JVM).
+- Download and extract Kafka.
+- Start Zookeeper (Kafka’s cluster manager).
+- Start Kafka broker.
+- Commands
+    - Create a topic: kafka-topics.sh --create --topic MyTopic --bootstrap-server localhost:9092
+    - Start a producer to send messages: kafka-console-producer.sh --topic MyTopic --bootstrap-server localhost:9092
+    - Start a consumer to read messages: kafka-console-consumer.sh --topic MyTopic --from-beginning --bootstrap-server localhost:9092
+- Summary
+    - Purpose: Distributed event streaming platform for real-time data pipelines and messaging
+    - Architecture: Cluster of brokers managing topics split into partitions
+    - Communication: Producers publish messages; consumers subscribe and process messages
+    - Scalability: Horizontal scaling via partitions and brokers
+    - Durability: Message persistence and replication
+    - Ecosystem: Integrates with stream processing tools and supports Kafka Streams API
+
+Use cases
+- Real-Time Data Processing: High-throughput, low-latency stream processing. Fraud detection, live monitoring.
+- Messaging System: Durable, scalable publish-subscribe messaging. Distributed microservices
+- Operational Metrics: Centralized collection and analysis of system metrics. Cloud infrastructure monitoring
+- Log Aggregation: Centralizing logs for debugging and security. ELK stack integration
+- Website Activity Tracking: High-volume user event collection and analysis. Netflix, e-commerce platforms
+- Event Sourcing: Immutable event logs for state changes. Banking, financial systems
+- Data Pipelines: Real-time data integration and ETL. IoT data streaming, analytics
+- IoT Telemetry Streaming: Handling sensor and device data streams. Automotive, smart devices

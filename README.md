@@ -37,6 +37,7 @@ Java
 - Spring Boot
 
 Javascript
+- Angular, ReactiveForms, TemplateDrivenForm, rxjs
 
 LCM
 - Find LCM of 2 given numbers

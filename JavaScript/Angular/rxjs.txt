@@ -1,2 +1,18 @@
 1. Creation Operators
 - of(1, 2, 3).subscribe(console.log); // Outputs: 1, 2, 3. of emits the provided values in sequence
+- from(array|promise|iterable): Converts arrays, promises, or iterables into Observables.
+
+2. Transformation Operators: Modify emitted values.
+- map(fn): source$.pipe(map(x => x * 2)).subscribe(console.log); // Transforms each emitted value using a function.
+- tap(fn): source$.pipe(tap(x => console.log('Value:', x))).subscribe(); // Perform side effects (e.g., logging) without altering the stream.
+
+3. Filtering Operators: Emit values conditionally.
+- filter(predicate): source$.pipe(filter(x => x % 2 === 0)).subscribe(console.log); // Emits even numbers only. Emits only values that satisfy the predicate.
+- distinctUntilChanged(): source$.pipe(distinctUntilChanged()).subscribe(console.log); // Suppresses duplicate consecutive values.
+
+4. Combination Operators: Combine multiple Observables.
+- merge(...observables): merge(interval(1000), interval(1500)).subscribe(console.log);  // Merges multiple streams into one, emitting values as they arrive.
+- forkJoin([...observables]): Waits for all Observables to complete, then emits the last values as an array.
+
+5. Flattening Operators: Handle higher-order Observables (Observables of Observables).
+- switchMap(fn): searchTerms.pipe(debounceTime(300), distinctUntilChanged(), switchMap(term => searchService.search(term))).subscribe(results => ...);

@@ -1,0 +1,23 @@
+import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+})
+export class AppComponent {
+  formData = {
+    name: '',
+    country: '',
+    acceptTerms: false,
+  };
+
+  countries = ['USA', 'Canada', 'UK', 'Australia'];
+
+  onSubmit(form: NgForm) {
+    if (form.valid) {
+      console.log('Form Submitted', this.formData);
+      form.resetForm();
+    }
+  }
+}

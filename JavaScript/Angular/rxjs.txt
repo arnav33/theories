@@ -1,0 +1,2 @@
+1. Creation Operators
+- of(1, 2, 3).subscribe(console.log); // Outputs: 1, 2, 3. of emits the provided values in sequence

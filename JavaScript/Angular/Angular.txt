@@ -1,0 +1,153 @@
+1. Components
+- The fundamental building blocks of Angular applications.
+- Each component consists of:
+    - A TypeScript class containing data and logic.
+    - An HTML template defining the UI.
+    - Optional CSS styles scoped to the component.
+- Components are organized hierarchically to form the application UI.
+
+2. Modules (NgModules)
+- Angular apps are modularized using NgModules.
+- Modules group related components, directives, pipes, and services.
+- The root module bootstraps the app and imports other feature modules.
+
+3. Templates and Data Binding
+- Templates use Angular’s declarative syntax to bind data and handle user events.
+- Types of data binding:
+    - Interpolation: {{ expression }} — display component data.
+    - Property binding: [property]="expression" — bind element properties.
+    - Event binding: (event)="handler()" — respond to user actions.
+    - Two-way binding: [(ngModel)]="property" — synchronize input fields bidirectionally.
+
+4. Directives: Directives are classes that add behavior to elements in templates. There are three types:
+- Components: Directives with a template (already covered as components).
+- Structural Directives: Change the DOM layout by adding or removing elements.
+    - Examples:
+    - *ngIf — conditionally include/exclude elements.
+    - *ngFor — repeat elements for each item in a list.
+    - *ngSwitch — switch-case conditional rendering.
+- Attribute Directives: Change the appearance or behavior of an element.
+    - Examples:
+    - ngClass — dynamically add or remove CSS classes.
+    - ngStyle — apply inline styles dynamically.
+    - Custom attribute directives to modify element behavior.
+
+5. Pipes
+- Transform displayed data in templates (e.g., formatting dates, currencies).
+- Angular provides built-in pipes like date, uppercase, currency.
+- You can create custom pipes for specific transformations.
+
+6. Services and Dependency Injection (DI)
+- Services encapsulate reusable business logic or data access.
+- Angular’s DI system injects service instances into components or other services, promoting modularity, testability, and separation of concerns.
+
+7. Routing
+- Angular Router enables navigation between views without full page reloads.
+- Supports route parameters, guards (for authentication/authorization), lazy loading, and nested routes.
+
+8. Forms
+- Template-driven forms: Easier to use, suitable for simple forms.
+- Reactive forms: More powerful and scalable, suitable for complex forms with dynamic validation.
+
+9. HTTP Client
+- Angular provides an HTTP client module (HttpClient) to communicate with backend APIs, supporting observables, interceptors, and error handling.
+
+10. Angular CLI: Command-line interface tool that automates project creation, scaffolding, building, testing, and deployment.
+- ng new <project-name>
+- ng serve / ng serve -o
+- ng build: Compile the app into an output directory (dist/). Use --prod for production build.
+- ng generate component <name>
+- ng generate service <name>
+- ng generate module <name>
+- ng generate directive <name>
+- ng generate pipe <name>
+- ng generate class <name>
+- ng generate interface <name>
+- ng generate enum <name>
+- ng generate guard <name>
+- ng test
+- ng e2e
+- ng lint
+- ng update: Update Angular and dependencies
+- ng version: Show Angular CLI version
+Flags
+- ng generate component my-component --skip-tests
+- ng new my-app --style=scss
+- ng new my-app --routing
+- ng generate service my-service --dry-run
+- ng build --verbose
+- ng new my-app --skip-install
+- ng generate component my-component --inline-style
+- ng generate component my-component --inline-template
+- ng new my-app --prefix=app
+- ng serve --port 4201
+- ng build --prod
+- ng test --watch
+- ng test --code-coverage
+- ng lint --fix
+- ng lint --force
+
+Why Use Angular?
+- Component-based architecture promotes code reusability and maintainability.
+- TypeScript provides strong typing, modern JavaScript features, and better tooling.
+- Rich ecosystem with built-in support for routing, forms, HTTP, and dependency injection.
+- Powerful CLI accelerates development and enforces best practices.
+- Large community and long-term support from Google.
+
+Decorators
+- Component: Marks a class as an Angular component and provides metadata like selector, template, styles, change detection strategy, etc.
+    @Component({
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css']
+    })
+    export class AppComponent {}
+- Directive
+    - Defines a directive class that can modify the behavior or appearance of DOM elements.
+    - Components are a specialized type of directive with a template.
+    @Directive({
+        selector: '[appHighlight]'
+    })
+    export class HighlightDirective {}
+- Injectable
+    - Marks a class as available for dependency injection.
+    - Used on services or classes that Angular injects into components or other services.
+    @Injectable({
+        providedIn: 'root'
+    })
+    export class DataService {}
+- NgModule
+    - Defines an Angular module, grouping components, directives, pipes, and providers.
+    - Contains metadata such as declarations, imports, exports, and bootstrap components.
+    @NgModule({
+        declarations: [AppComponent],
+        imports: [BrowserModule],
+        bootstrap: [AppComponent]
+    })
+    export class AppModule {}
+- Pipe: Defines a pipe class that transforms data in templates.
+    @Pipe({
+        name: 'customPipe'
+    })
+    export class CustomPipe implements PipeTransform {
+        transform(value: any): any {
+            // transformation logic
+        }
+    }
+- Input: Marks a property as an input binding that a parent component can set.
+    @Input() userName: string;
+- Output: Marks a property as an output event emitter that a component can use to emit events to its parent.
+    @Output() userClicked = new EventEmitter<void>();
+- HostBinding: Binds a property of the directive/component class to a host element property or attribute.
+    @HostBinding('class.active') isActive = true;
+- HostListener: Listens to events on the host element and triggers a method.
+    @HostListener('click') onClick() {
+        console.log('Host element clicked');
+    }
+- @ContentChild / @ContentChildren: Access projected content elements or directives inside a component.
+    @ContentChild(SomeDirective) contentChild: SomeDirective;
+- @ViewChild / @ViewChildren: Access child components, directives, or DOM elements inside the component’s own template.
+    @ViewChild('myInput') inputElement: ElementRef;
+- Inject: Specifies a custom provider token for dependency injection.
+    constructor(@Inject(MY_TOKEN) private service) {}
+- @Self, @SkipSelf, @Optional: Injection decorators controlling how dependencies are resolved in the injector hierarchy.

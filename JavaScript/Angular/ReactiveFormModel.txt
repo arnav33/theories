@@ -1,0 +1,23 @@
+import { Component } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+})
+export class AppComponent {
+  countries = ['USA', 'Canada', 'UK', 'Australia'];
+
+  form = new FormGroup({
+    name: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    country: new FormControl('', Validators.required),
+    acceptTerms: new FormControl(false, Validators.requiredTrue),
+  });
+
+  onSubmit() {
+    if (this.form.valid) {
+      console.log('Form Submitted', this.form.value);
+      this.form.reset();
+    }
+  }
+}

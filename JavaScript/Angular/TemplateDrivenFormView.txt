@@ -1,0 +1,50 @@
+<form #form="ngForm" (ngSubmit)="onSubmit(form)" novalidate>
+
+  <!-- Name Input -->
+  <input
+    name="name"
+    [(ngModel)]="formData.name"
+    required
+    minlength="3"
+    #name="ngModel"
+    placeholder="Name"
+  />
+  <div *ngIf="form.submitted && name.invalid">
+    <small *ngIf="name.errors?.['required']">Name is required.</small>
+    <small *ngIf="name.errors?.['minlength']">Minimum 3 characters.</small>
+  </div>
+
+  <!-- Country Dropdown -->
+  <select
+    name="country"
+    [(ngModel)]="formData.country"
+    required
+    #country="ngModel"
+  >
+    <option value="" disabled selected>Select Country</option>
+    <option *ngFor="let c of countries" [value]="c">{{ c }}</option>
+  </select>
+  <div *ngIf="form.submitted && country.invalid">
+    <small>Please select a country.</small>
+  </div>
+
+  <!-- Accept Terms Checkbox -->
+  <label>
+    <input
+      name="acceptTerms"
+      type="checkbox"
+      [(ngModel)]="formData.acceptTerms"
+      required
+      #acceptTerms="ngModel"
+    />
+    Accept Terms
+  </label>
+  <div *ngIf="form.submitted && acceptTerms.invalid">
+    <small>You must accept the terms.</small>
+  </div>
+
+  <!-- Buttons -->
+  <button type="submit" [disabled]="form.invalid">Submit</button>
+  <button type="button" (click)="form.resetForm()">Reset</button>
+
+</form>

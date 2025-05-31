@@ -1,0 +1,262 @@
+1. Ways to Decode
+Given a digit string representing an encoded message (A-Z mapped to 1-26), find the total number of ways to decode it modulo 10^9 + 7.
+
+Approach Summary
+- Use recursion with memoization (DP) to count decoding ways starting from each index.
+- At each step, consider decoding one digit (if valid) and two digits (if valid and ≤ 26).
+- Use a dp array to store results for subproblems to avoid recomputation.
+- Handle edge cases like '0' which cannot be decoded alone.
+- Return the total count modulo 10^9 + 7.
+
+
+2. Longest Balanced Substring
+Given a string of brackets (), [], {}, find the length of the longest balanced substring where balanced means properly matched and nested brackets.
+
+Approach Summary
+- Use a DP array dp where dp[i] stores the length of the longest balanced substring ending at index i.
+- Iterate through the string from left to right:
+    - If current char is a closing bracket and the previous char is its matching opening bracket, update dp[i] considering previous valid substrings.
+    - If the previous character is also a closing bracket, check if the substring before the last balanced substring matches the current closing bracket.
+- Keep track of the maximum value in dp as the answer.
+- Use a map to match closing brackets to their corresponding opening brackets.
+- Time complexity: O(N), Space complexity: O(N).
+
+
+3. Minimum Number of Squares
+Given an integer A, find the minimum count of perfect square numbers whose sum equals A.
+
+Approach Summary
+- Use top-down dynamic programming with memoization.
+- For each number from 1 to √A, recursively find the minimum count for A - i².
+- Store intermediate results in dp array to avoid recomputation.
+- Base case: if A ≤ 3, return A (since 1² can be used A times).
+- Return the minimum count found.
+
+
+4. Max Sum Without Adjacent Elements
+Given a 2 x N grid, select numbers to maximize the sum such that no two chosen numbers are adjacent horizontally, vertically, or diagonally.
+
+Approach Summary
+- For each column, pick the maximum of the two values (since choosing either blocks neighbors in adjacent columns).
+- Reduce the problem to selecting numbers from a 1D array (max values per column) with the constraint of no two adjacent picks.
+- Use DP to find the maximum sum of non-adjacent elements in this 1D array.
+- Recurrence: dp[i] = max(dp[i-1], dp[i-2] + list[i]).
+- Return the maximum sum computed.
+
+
+5. Ways to Decode
+Given a digit string representing an encoded message (mapping 'A' to 1, ..., 'Z' to 26), find the total number of ways to decode the string modulo 10^9 + 7.
+
+Approach Summary
+- The provided solution uses recursion with memoization (top-down DP).
+- At each position, it tries decoding one digit (if valid) and two digits (if valid and ≤ 26).
+- Results for each index are cached in dp to avoid recomputation.
+- Handles edge cases such as '0' which cannot be decoded alone.
+- Returns the total count modulo 10^9 + 7.
+
+
+6. Max Product Subarray
+Given an integer array, find the contiguous subarray with the largest product and return that maximum product.
+
+Approach Summary
+- Use two variables max and min to keep track of the maximum and minimum product ending at the current position, because a negative number can turn a minimum product into a maximum product when multiplied.
+- Iterate through the array:
+    - If current element is non-negative, update max as max of current element or max * current element; update min similarly.
+    - If current element is negative, swap roles of max and min before updating.
+- Keep track of the global maximum product in ans.
+- Return ans at the end.
+
+7.  Longest Balanced Substring
+Given a string of brackets (), [], {}, find the length of the longest balanced substring where balanced means properly matched and nested brackets.
+
+Approach Summary
+- Use a DP array dp where dp[i] stores the length of the longest balanced substring ending at index i.
+- Iterate through the string from left to right:
+    - If current char is a closing bracket and the previous char is its matching opening bracket, update dp[i] considering previous valid substrings.
+    - If the previous character is also a closing bracket, check if the substring before the last balanced substring matches the current closing bracket.
+- Keep track of the maximum value in dp as the answer.
+- Use a map to match closing brackets to their corresponding opening brackets.
+
+Time complexity: O(N), Space complexity: O(N).
+
+8. Maximum Sum Value
+Given an array A and integers B, C, and D, find the maximum value of
+A[i]*B + A[j]*C + A[k]*D where 1 <= i <= j <= k <= N.
+
+Approach Summary
+- Use a three-step dynamic programming approach to maintain maximum values for each stage:
+    - Stage 1: Maximum value of A[i] * B for i up to current index.
+    - Stage 2: Maximum value of A[i]*B + A[j]*C for j up to current index, using results from stage 1.
+    - Stage 3: Maximum value of A[i]*B + A[j]*C + A[k]*D for k up to current index, using results from stage 2.
+- At each stage, update the max array to hold the best achievable value so far.
+- The final answer is the maximum value at the last index after stage 3.
+
+
+9. N digit numbers
+Count the number of positive A-digit numbers whose digits sum up to B. Leading zeros are not allowed (i.e., the first digit must be 1-9). Return the count modulo 10^9 + 7.
+
+Approach Summary
+- Use top-down dynamic programming with memoization.
+- Define dp[digits][sum] as the number of ways to form a number with digits digits summing to sum.
+- For the first digit, choose from 1 to 9 (no zero), for subsequent digits choose 0 to 9.
+- Recursively reduce the problem by choosing a digit and decreasing digits and sum accordingly.
+- Use modulo arithmetic to keep numbers within limits.
+
+
+10. Min Sum Path in Triangle
+Given a triangle (list of lists), find the minimum path sum from top to bottom where at each step you can move to adjacent numbers in the row below (either same column or column + 1).
+
+Approach Summary
+- Use dynamic programming to build up the minimum path sums from the bottom row to the top row (bottom-up approach).
+- For each element in a row, the minimum path sum is the element's value plus the minimum of the two adjacent elements in the row below.
+- Alternatively, use top-down DP by starting from the top and accumulating minimum sums for each position.
+- The answer is the minimum value in the top row after processing.
+
+
+11. Longest valid Parentheses
+Given a string of parentheses '(' and ')', find the length of the longest valid (well-formed) parentheses substring.
+
+Approach Summary
+- Use dynamic programming with an array dp where dp[i] represents the length of the longest valid substring ending at index i.
+- Iterate through the string starting from index 1:
+- If current char is ')' and previous char is '(', then dp[i] = dp[i-2] + 2 (simple pair).
+- Else if current char is ')' and previous char is also ')', check if the character before the valid substring ending at i-1 is '('. If yes, then dp[i] = dp[i-1] + 2 + dp[x-1] where x = i - dp[i-1] - 1.
+- Keep track of the maximum value in dp as the answer.
+
+
+12. Max Rectangle in Binary Matrix
+Given a 2D binary matrix, find the area of the largest rectangle containing only 1's.
+
+Approach Summary
+- Treat each row as the base of a histogram where the height of each column is the count of consecutive 1's above (including current row).
+- For each row, update the histogram heights and find the largest rectangle area in that histogram.
+- Use a stack-based approach to find the largest rectangle in a histogram efficiently.
+
+Explanation of Provided Code
+Building Histograms:
+- For each row starting from the second, update each element by adding the value from the cell above if the current cell is 1.
+- This accumulates heights of consecutive 1's column-wise.
+Largest Rectangle in Histogram (getMaxArea):
+- For the current histogram (row), compute the largest rectangle area using getMinLeft and getMinRight arrays.
+- getMinLeft gives the index of the nearest smaller element to the left for each bar.
+- getMinRight gives the index of the nearest smaller element to the right for each bar.
+- Width of the rectangle for each bar = right[i] - left[i] - 1.
+- Area = width * height.
+Stack Helpers:
+- getMinLeft and getMinRight use stacks to find nearest smaller elements efficiently in O(N) time.
+Final Answer:
+- The maximum area found among all rows' histograms is returned.
+
+
+13. 0-1 Knapsack
+Given arrays A (values) and B (weights) of N items and a knapsack capacity C, find the maximum total value of a subset of items such that the total weight does not exceed C. Items cannot be broken (0-1 knapsack).
+
+Approach Summary
+- Use top-down dynamic programming with memoization.
+- Define dp[i][C] as the maximum value achievable using items from index i to end with capacity C.
+- For each item, decide to either:
+    - Include it if weight allows: value = A[i] + dp[i+1][C - B[i]]
+    - Exclude it: value = dp[i+1][C]
+- Take the maximum of these two choices.
+- Use memoization to avoid recomputation.
+
+
+14. Unbounded Knapsack
+Given a knapsack capacity A and items with values B[i] and weights C[i], find the maximum value that can fit into the knapsack when you can use unlimited instances of each item (Unbounded Knapsack).
+
+Approach Summary: This is a classic Unbounded Knapsack problem.
+- Use top-down DP with memoization or bottom-up DP to solve efficiently.
+- For each capacity w and item i, decide whether to include item i (if weight allows) and continue with the same item (unlimited usage), or skip to other items.
+- The state can be defined as dp[i][w] = max value achievable using items from i to end with capacity w.
+- Alternatively, use a 1D DP array where dp[w] stores the max value for capacity w.
+
+15. Buying Candies
+Rishik wants to maximize the total sweetness of candies he can buy with D nibbles. There are N candy packets, each packet i contains A[i] candies, each candy has sweetness B[i], and the packet costs C[i] nibbles. He can buy unlimited whole packets but cannot buy partial packets.
+
+Approach Summary
+- This is an Unbounded Knapsack problem where:
+    - Weight = cost of packet C[i]
+    - Value = total sweetness of the packet = A[i] * B[i]
+    - Capacity = D (total nibbles available)
+- Use top-down DP with memoization or bottom-up DP to find the maximum sweetness achievable with given capacity.
+- For each packet, we can either skip it or buy it multiple times as long as the cost fits in the remaining capacity.
+
+
+16. Tushar's Birthday Party
+We have multiple friends with different eating capacities (A). We have dishes with certain filling capacities (B) and costs (C). Each friend must be exactly satisfied by dishes whose total filling capacity equals their eating capacity. Each dish can be eaten unlimited times by a single friend but cannot be shared among friends. Find the minimum total cost to satisfy all friends.
+
+Approach Summary
+- This is a multiple unbounded knapsack problem where each friend’s capacity must be exactly matched by a combination of dishes.
+- Since dishes cannot be shared, solve the problem independently for each friend and sum the minimum costs.
+- Use top-down DP with memoization to find the minimum cost to fill a given capacity for each friend.
+- dp[i][capacity] stores the minimum cost to fill capacity using dishes from index i onwards.
+- For each dish:
+    - Either skip it and move to the next dish (recurse(i+1, capacity))
+    - Or use it (if capacity allows) and stay on the same dish (costs[i] + recurse(i, capacity - capacities[i]))
+- Base case: if capacity is 0, cost is 0; if no dishes left and capacity > 0, cost is infinite (no solution).
+
+
+17.  Ways to send the signal
+You have a linear array of A laser lights, each can be ON or OFF. You want to send signals such that no two consecutive lights are ON to avoid danger. Find the total number of valid ON/OFF configurations modulo 1e9 + 7
+
+Approach Summary
+- This is a classic combinatorial problem of counting binary strings of length A with no two consecutive 1s.
+- Define dp[i][x] as the number of valid sequences starting from index i where the previous light state is x (0 = OFF, 1 = ON).
+- Recurrence:
+    - If previous light is ON (x=1), next light must be OFF (0).
+    - If previous light is OFF (x=0), next light can be ON (1) or OFF (0).
+- Base case: when i == length, return 1 (valid sequence formed).
+- Sum all valid sequences starting from index 0 with previous state OFF or ON.
+
+
+18. Cutting a Rod
+Given a rod of length N and an array A where A[i] represents the price of a rod piece of length i+1, find the maximum value obtainable by cutting the rod into pieces and selling them.
+
+Approach Summary
+- This is a classic Rod Cutting problem, a variation of unbounded knapsack.
+- Use top-down recursion with memoization or bottom-up DP to find the maximum price.
+- For each possible first cut length j (1 to length), calculate:
+    - Price of the piece A[j-1] + maximum price for remaining length length - j.
+- Take the maximum over all possible first cuts.
+
+19. Coin Sum Infinite
+Given a set of unique coins A and a target sum B, find the number of ways to make the sum B using unlimited coins from A. Return the answer modulo 1,000,007.
+
+Approach Summary
+- This is a classic Coin Change (Number of Ways) problem with infinite supply of each coin.
+- Use top-down recursion with memoization or bottom-up DP.
+- State dp[i][B] represents the number of ways to make sum B using coins from index i onwards.
+- At each step:
+    - Include current coin A[i] (if B - A[i] >= 0) and stay at i (since infinite supply).
+    - Exclude current coin and move to next coin i + 1.
+- Sum both possibilities modulo mod.
+
+
+20. 0-1 Knapsack II
+Given arrays A (values) and B (weights) of N items and knapsack capacity C, find the maximum total value of a subset of items such that the total weight does not exceed C. You cannot break items (0-1 knapsack).
+
+Explanation of Provided Code
+- The solution uses a value-based DP approach instead of the classical weight-based DP because:
+- The weights B[i] can be very large (up to 10^6), making weight-based DP infeasible due to memory/time constraints.
+- The values A[i] are small (up to 50), so using values as states is more efficient.
+
+DP Definition:
+- dp[i][j] = minimum weight needed to achieve total value j using the first i items.
+- Initialize dp[j] = Integer.MAX_VALUE for j > 0 (impossible to achieve any positive value with zero items).
+- For each item i and each possible value j:
+    - Either don't take item i: weight = dp[i-1][j]
+    - Or take item i (if j - A[i-1] >= 0): weight = dp[i-1][j - A[i-1]] + B[i-1]
+- Take the minimum of these two weights.
+- Keep track of the maximum value j for which dp[i][j] <= C.
+
+
+21. Flip Array
+Given an array A of positive integers, flip the sign of some elements so that the resulting sum is minimum non-negative (closest to zero but not negative). Return the minimum number of elements flipped to achieve this.
+
+Explanation
+- Flipping the sign of elements is equivalent to partitioning the array into two subsets: one subset whose sum will be subtracted (flipped) and the other added.
+- Let totalSum be the sum of all elements.
+- We want to find a subset with sum S such that S is as close as possible to totalSum / 2 (to minimize the absolute difference).
+- Among all subsets with sum S close to totalSum / 2, we want the one with minimum number of elements.
+- The problem reduces to a variation of subset sum with an additional dimension tracking the minimum number of elements used.
+

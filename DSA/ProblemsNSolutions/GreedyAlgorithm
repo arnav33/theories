@@ -1,0 +1,90 @@
+1. Distribute Candy
+Given N children in a line, each with a rating, distribute candies such that:
+- Every child gets at least one candy.
+- Children with higher rating than their immediate neighbors get more candies than those neighbors.
+Find the minimum total candies needed.
+
+Approach Summary
+- Traverse left to right, assign candies incrementally if rating increases from left neighbor.
+- Traverse right to left, assign candies incrementally if rating increases from right neighbor.
+- For each child, take the max candies from both traversals.
+- Sum these max values for the answer.
+
+
+2. Seats
+Given a row of seats represented by a string with 'x' (occupied) and '.' (empty), move all occupied seats so that the group sits together without gaps, minimizing total jumps. Each jump moves a person to an adjacent seat. Return the minimum jumps modulo 10^7 + 3.
+
+Approach Summary
+- Extract indices of all occupied seats.
+- Find the median occupied seat position as the target center.
+- Calculate jumps by aligning others around the median, minimizing total moves.
+- Sum absolute differences adjusted by relative positions to get minimum jumps.
+- Return result modulo 10^7 + 3.
+
+
+3. Find maximum jobs
+Given N jobs with start and finish times, select the maximum number of non-overlapping jobs you can complete, doing only one job at a time.
+
+Approach Summary
+- Sort jobs by their finish times (using a priority queue or sorting).
+- Iterate through jobs, greedily selecting the next job that starts after or when the last selected job finishes.
+- Count how many jobs can be scheduled without overlap.
+- Return the count as the maximum jobs completed.
+
+
+4. Flipkart's Challenge in Effective Inventory Management
+Problem Summary
+Given grocery items with deadlines (time before expiration) and profits, buy items one at a time starting from day 0, ensuring each item is bought before its deadline (1 minute per item). Maximize total profit from chosen items. Return result modulo 10^9 + 7.
+
+Approach Summary
+- Sort items by their deadlines in ascending order.
+- Use a min-heap to keep track of chosen items' profits.
+- Iterate through items, if current time < deadline, add profit to heap and total profit.
+- If current time exceeds deadline, replace the smallest profit item with a higher profit item if possible to maximize profit.
+- Return the sum of profits modulo 10^9 + 7.
+
+
+5. Binary Strings
+Problem Summary
+Given a binary string, flip exactly B consecutive bits (0→1, 1→0) any number of times to convert the entire string into all 1's. Find the minimum number of flips required or return -1 if impossible.
+
+Approach Summary
+- Iterate through the string from left to right.
+- Whenever a '0' is encountered at position i, flip the next B bits starting at i.
+- If flipping goes beyond string length, return -1.
+- Count each flip operation.
+- Return total flips after processing entire string.
+
+
+6. Another Coin Problem
+Problem Summary
+Given a cost A and coins of values 5^0, 5^1, 5^2, ... (1, 5, 25, 125, ...), find the minimum number of coins needed to pay exactly A.
+
+Approach Summary
+- Generate all coin denominations up to A (powers of 5).
+- Use a greedy approach starting from the largest coin: subtract as many of that coin as possible from A.
+- Count how many coins are used in total.
+- Continue with smaller coins until A becomes zero.
+- Return the total count as the minimum number of coins.
+
+
+7.The ship company
+Problem Summary
+Given A passengers and B ships with initial empty seats C[i], each passenger buys a ticket costing the current vacant seats of the chosen ship. Find the maximum and minimum total money the ship company can earn after all A passengers buy tickets.
+
+Approach Summary
+- For minimum earnings: use a min-heap to always assign the passenger to the ship with the fewest vacant seats (lowest cost).
+- For maximum earnings: use a max-heap to assign passengers to the ship with the most vacant seats (highest cost).
+- After each ticket sale, decrease the vacant seats of that ship by 1 and reinsert if seats remain.
+- Sum the costs for all A passengers for both scenarios and return them as [max, min].
+
+
+8. Assign Mice to Holes
+Problem Summary
+Given N mice and N holes on a line, assign each mouse to a unique hole minimizing the maximum time taken by any mouse to reach its hole. Each move (left or right by 1 step) takes 1 minute.
+
+Approach Summary
+- Sort the positions of mice and holes independently.
+- Pair each mouse with the hole at the same index after sorting.
+- Calculate the absolute distance for each pair.
+- The answer is the maximum of these distances, representing the minimum time for the last mouse to get inside a hole.

@@ -94,3 +94,7 @@ AWS
 - cli commands
 - LambdaServices class
 - S3Services class
+
+DSA
+- Greedy Algorithm
+- Dynamic Programming

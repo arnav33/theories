@@ -1,0 +1,183 @@
+### Advanced Threading & Concurrency (Comprehensive)
+
+- Thread Creation:
+    - Extend `Thread` class (rarely used in modern code).
+    - Implement `Runnable` (no return value) or `Callable` (returns value, can throw checked exceptions).
+    - Use `ExecutorService` for thread pools (`FixedThreadPool`, `CachedThreadPool`, `SingleThreadExecutor`, `ScheduledThreadPool`).
+    - Use `ForkJoinPool` for parallelism (divide-and-conquer tasks).
+    - Use `CompletableFuture` for async, non-blocking workflows.
+
+- ExecutorService Types:
+    - FixedThreadPool: Fixed number of threads, excess tasks are queued. Controls concurrency.
+    - CachedThreadPool: Creates new threads as needed, reuses idle threads. Suitable for many short-lived tasks.
+    - SingleThreadExecutor: Single worker thread, tasks executed sequentially.
+    - ScheduledThreadPool: Schedules tasks with delay or periodically.
+    - ForkJoinPool: For parallelism in divide-and-conquer tasks (work-stealing).
+
+- Thread Lifecycle & States:
+    - States: New, Runnable, Blocked, Waiting, Timed Waiting, Terminated.
+    - Transitions occur via `start()`, `wait()`, `notify()`, `sleep()`, `join()`, and thread completion.
+
+- Java Memory Model (JMM):
+    - Defines how threads interact through memory and what behaviors are allowed in concurrent code.
+    - Visibility: Changes made by one thread to shared variables are visible to other threads only under certain conditions (e.g., after synchronization).
+    - Ordering: JMM allows reordering of instructions for optimization, but provides "happens-before" guarantees to ensure correctness.
+    - Happens-Before Relationship: If action A happens-before action B, then the effects of A are visible to B. Examples:
+        - Unlocking a monitor happens-before every subsequent locking of that monitor.
+        - Writing to a `volatile` variable happens-before every subsequent read of that variable.
+        - Thread start/join: Actions before `Thread.start()` are visible to the started thread; actions in a thread are visible to another thread after `Thread.join()`.
+    - Data Races: Occur when two threads access the same variable concurrently, and at least one is a write, without proper synchronization. Leads to unpredictable results.
+    - Atomicity: Reads/writes to `int`, `boolean`, `char` are atomic. Longs and doubles are not atomic on 32-bit JVMs unless declared `volatile`.
+    - Volatile: Guarantees visibility (not atomicity or mutual exclusion). Prevents instruction reordering for that variable.
+    - Synchronized: Ensures mutual exclusion and establishes happens-before relationships.
+    - Final Fields: Properly constructed objects with final fields guarantee visibility of those fields after construction, even without synchronization.
+    - False Sharing: Performance degradation occurs when threads on different cores modify variables that share the same cache line. Minimize by padding or separating frequently updated variables.
+
+    - Memory Model & Synchronization:
+        - `volatile`: Ensures visibility of changes to variables across threads, but does not guarantee atomicity.
+        - `synchronized`: Provides mutual exclusion and establishes happens-before relationships. Used for critical sections.
+        - Locks: Advanced locking mechanisms like `ReentrantLock` (supports fairness and tryLock), `ReadWriteLock` (separate read/write locks), and `StampedLock` (optimistic and pessimistic locking).
+        - Deadlock: Occurs when threads wait indefinitely for resources held by each other. Prevent by acquiring locks in a consistent order, using timeouts, or lock hierarchy.
+        - Livelock: Threads keep changing state in response to each other but make no progress.
+        - Starvation: A thread is perpetually denied access to resources. Use fair locks to avoid.
+        - Lock Fairness: Some locks (e.g., `ReentrantLock`) can be constructed as fair to avoid starvation, but may reduce throughput.
+
+    - Inter-thread Communication:
+        - `wait()`, `notify()`, `notifyAll()`: Used for coordination between threads, typically in producer-consumer scenarios. Must be called within synchronized blocks.
+        - Blocking Queues: (`ArrayBlockingQueue`, `LinkedBlockingQueue`) provide thread-safe producer-consumer patterns without explicit wait/notify.
+        - Synchronizers: 
+            - `CountDownLatch`: Allows threads to wait until a set of operations complete.
+            - `CyclicBarrier`: Allows a set of threads to all wait for each other to reach a common barrier point.
+            - `Semaphore`: Controls access to a resource via permits.
+            - `Phaser`: Flexible barrier for synchronizing threads in phases.
+
+    - ThreadLocal:
+        - Provides thread-local variables; each thread has its own independent copy.
+        - Useful for storing user sessions, database connections, or per-thread state.
+        - Internally, each thread maintains a map of ThreadLocal variables and their values.
+        - How it works: When you call `ThreadLocal.get()` or `set()`, the value is stored in a map that is unique to the current thread. Other threads cannot access or see this value.
+        - Memory Leaks: In thread pools, always remove values after use to prevent leaks.
+        - Example:
+          ```java
+          ThreadLocal<Integer> threadLocalValue = ThreadLocal.withInitial(() -> 1);
+          threadLocalValue.set(100); // Only visible to current thread
+          Integer value = threadLocalValue.get();
+          threadLocalValue.remove(); // Prevent memory leaks in thread pools
+          ```
+
+    - Sleep:
+        - `Thread.sleep(milliseconds)` pauses the current thread for the specified time.
+        - Does not release any locks held by the thread.
+        - Used for timing, polling, or simulating delays.
+        - Throws `InterruptedException` if the thread is interrupted.
+
+    - Wait:
+        - `Object.wait()` causes the current thread to wait until another thread calls `notify()` or `notifyAll()` on the same object.
+        - Releases the monitor lock on the object, allowing other threads to acquire it.
+        - Used for inter-thread communication, typically in producer-consumer scenarios.
+        - Must be called from a synchronized context.
+        - Throws `InterruptedException`.
+
+    - Thread Interruption:
+        - Threads can be interrupted using `interrupt()`.
+        - Check interruption status with `isInterrupted()` or handle `InterruptedException`.
+        - Used for cooperative thread termination.
+
+    - Best Practices:
+        - Prefer high-level concurrency utilities (`ExecutorService`, concurrent collections, synchronizers) over manual thread management.
+        - Avoid shared mutable state; use immutability or thread confinement.
+        - Always handle thread interruption and resource cleanup.
+        - Use thread-safe collections and avoid manual synchronization where possible.
+
+---
+
+### Java Collections Framework
+
+- Core Interfaces: `Collection`, `List`, `Set`, `Queue`, `Map`.
+- List Implementations: `ArrayList` (fast random access, slow inserts/removes in middle), `LinkedList` (fast inserts/removes, slow random access), `Vector` (legacy, synchronized).
+- Set Implementations: `HashSet` (no order, fast), `LinkedHashSet` (insertion order), `TreeSet` (sorted, uses `Comparable`/`Comparator`).
+- Map Implementations: `HashMap` (no order), `LinkedHashMap` (insertion order), `TreeMap` (sorted), `ConcurrentHashMap` (thread-safe, segment locking), `WeakHashMap` (keys can be GC'd).
+- Queue Implementations: `PriorityQueue` (heap-based), `ArrayDeque` (double-ended queue).
+- Concurrent Collections: `CopyOnWriteArrayList`, `ConcurrentSkipListMap`, `BlockingQueue` variants.
+- Best Practices: Prefer interfaces, use immutable collections where possible, be aware of fail-fast vs fail-safe iterators.
+
+---
+
+### Java Streams API
+
+- Stream Creation: From collections (`stream()`), arrays, generators, or builders.
+- Intermediate Operations: `map`, `filter`, `sorted`, `distinct`, `flatMap`, etc.
+- Terminal Operations: `collect`, `reduce`, `forEach`, `count`, `anyMatch`, `allMatch`, etc.
+- Parallel Streams: Use `parallelStream()` for parallel processing, but beware of thread-safety and overhead.
+- Collectors: `toList()`, `toSet()`, `joining()`, `groupingBy()`, `partitioningBy()`, etc.
+- Best Practices: Avoid side effects, prefer stateless operations, use parallel streams judiciously.
+
+---
+
+### Spring Boot
+
+- Auto-configuration: Reduces boilerplate by auto-configuring beans based on classpath.
+- Starters: Predefined dependencies for common use cases (`spring-boot-starter-web`, `spring-boot-starter-data-jpa`, etc.).
+- Custom Starters: Create when you need reusable auto-configuration and dependencies for multiple projects. Steps:
+    - Create a new module with required dependencies and auto-configuration classes.
+    - Use `@Configuration` and `@ConditionalOn...` annotations for conditional bean creation.
+    - Publish as a library and include in other projects.
+- Profiles: Use `@Profile` and `application-{profile}.properties` for environment-specific configs.
+- Actuator: Production-ready features (metrics, health checks, etc.).
+- Externalized Configuration: Supports properties, YAML, environment variables, command-line args.
+- Embedded Servers: Tomcat, Jetty, Undertow.
+- Spring Boot CLI: Command-line tool for rapid prototyping.
+- DevTools: Hot swapping, automatic restarts, and live reload for development.
+
+---
+
+### Spring Data JPA
+
+- Repositories: `CrudRepository`, `JpaRepository`, `PagingAndSortingRepository` for CRUD and pagination.
+- Query Methods: Define finder methods by naming convention or use `@Query` for custom JPQL/native queries.
+- Entity Mapping: Use `@Entity`, `@Table`, `@Id`, `@GeneratedValue`, `@OneToMany`, `@ManyToOne`, etc.
+- Transactions: Use `@Transactional` for declarative transaction management.
+- Projections: Interface-based and class-based projections for partial data retrieval.
+- Auditing: Enable with `@EnableJpaAuditing`, use `@CreatedDate`, `@LastModifiedDate`.
+- Best Practices: Prefer constructor injection, avoid N+1 queries (use `@EntityGraph` or fetch joins), use DTOs for projections.
+
+---
+
+### Kafka
+
+- Core Concepts: Producer, Consumer, Topic, Partition, Broker, Zookeeper.
+- Producer API: Send messages to topics, configure acks, retries, batching.
+- Consumer API: Subscribe to topics, poll for messages, manage offsets (auto/manual commit).
+- Serialization: Use `StringSerializer`, `ByteArraySerializer`, or custom serializers.
+- Consumer Groups: Enable parallel processing and scalability.
+- Delivery Semantics: At most once, at least once, exactly once.
+- Spring Kafka: Use `@KafkaListener` for message-driven POJOs, configure via `KafkaTemplate`.
+- Best Practices: Use idempotent producers, monitor lag, secure with SSL/SASL, tune partitions for throughput.
+
+---
+
+### Redis
+
+- Data Structures: String, List, Set, Sorted Set, Hash, Bitmap, HyperLogLog, Streams.
+- Persistence: RDB snapshots, AOF logs, hybrid persistence.
+- Pub/Sub: Messaging between processes.
+- Transactions: MULTI/EXEC/DISCARD/WATCH for atomic operations.
+- Caching: Use as a distributed cache with TTL, eviction policies (LRU, LFU, etc.).
+- Spring Data Redis: Integrate with Spring, use `RedisTemplate`, repositories, and cache abstractions.
+- Best Practices: Use connection pooling, avoid large keys/values, monitor memory usage, secure with ACLs.
+
+---
+
+### Angular
+
+- Architecture: Component-based, uses modules, services, dependency injection.
+- Components: Decorated with `@Component`, define template, style, and logic.
+- Services: Singleton objects for business logic, injected via DI.
+- Data Binding: Interpolation, property binding, event binding, two-way binding (`[(ngModel)]`).
+- Directives: Structural (`*ngIf`, `*ngFor`), attribute (`[ngClass]`, `[ngStyle]`).
+- Routing: `@NgModule`, `RouterModule`, lazy loading, route guards.
+- HTTP Client: Use `HttpClient` for RESTful calls, interceptors for cross-cutting concerns.
+- Forms: Template-driven and reactive forms, validation.
+- Testing: Jasmine, Karma for unit and integration tests.
+- Best Practices: Use OnPush change detection, modularize code, follow Angular style guide, use RxJS for async operations.
+

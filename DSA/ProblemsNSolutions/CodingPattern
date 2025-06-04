@@ -1,0 +1,203 @@
+8 Coding Patterns
+1. Sliding Window Pattern
+- Use when needing to find a subset (substring/subarray) that satisfies a condition.
+- Operates by maintaining a "window" over a linear data structure (array, string, linked list).
+- The window slides step-by-step to scan the entire input.
+- Example: Longest substring with K unique characters.
+
+2. Subset Pattern
+- Used to find all possible combinations or permutations of elements.
+- Explore all subsets by building them iteratively, level by level.
+- Similar to Breadth-First Search (BFS) in approach.
+- Example: Permutations problem on LeetCode.
+
+3. Modified Binary Search Pattern
+- Core idea: divide search space in half repeatedly.
+- Modified to handle special cases like rotated sorted arrays.
+- Requires strong understanding of classic binary search.
+- Example: Search in rotated sorted array.
+
+4. Top K Elements Pattern
+- Select K elements from a dataset based on a condition (e.g., top K largest).
+- Use a Heap data structure to efficiently track K important elements.
+- Example: Find the kth largest number in an array.
+
+5. Depth-First Search (DFS) on Binary Tree
+- Visit every node by exploring one branch deeply before backtracking.
+- Usually implemented recursively.
+- Example: Find maximum depth of a binary tree.
+
+6. Topological Sort
+- Order elements with dependencies (no cycles) in Directed Acyclic Graphs (DAG).
+- Useful for scheduling tasks/modules with prerequisites.
+- Example: Course schedule problem on LeetCode.
+
+7. Breadth-First Search (BFS) on Binary Tree
+- Explore all nodes at the same level before moving deeper.
+- Use a queue to process nodes level-wise.
+- Example: Level order traversal or level order reversal of a binary tree.
+
+8. Two-Pointer Pattern
+- Use two pointers to iterate through a sorted array efficiently.
+- Move pointers based on conditions to find pairs/triplets meeting criteria.
+- Example: Two sum problem in a sorted array, or finding triplets summing to zero.
+
+
+
+5 Algorithms for Coding Interviews
+1. Top K Elements Algorithm
+- Used to find the k largest or smallest elements or most frequent elements in an array.
+- Naive approach: sort array and pick k elements (O(n log n)).
+- Optimal approach: use a min-heap of size k to track top k elements.
+- For each new element, add it to heap and remove smallest to maintain size k.
+- Time complexity: O(n log k).
+
+Common in problems involving frequency or sliding windows.
+
+2. Sliding Window Algorithm
+- Useful for problems involving contiguous subarrays or substrings.
+- Maintain two pointers (left and right) defining a window.
+- Expand right pointer to include new elements; shrink left pointer to remove duplicates or maintain constraints.
+- Example: longest substring without repeating characters.
+- Efficiently tracks window contents using a hash map or set.
+
+3. Backtracking
+- Explore all possible solutions by building them incrementally.
+- When an invalid state is reached, backtrack to explore other options.
+- Typically implemented with recursion.
+- Example: Combination Sum problem—find all unique combinations that sum to a target.
+- Prunes search space by stopping when sum exceeds target.
+
+4. Dynamic Programming (DP)
+- Improves over backtracking by storing results of subproblems to avoid recomputation.
+- Break a problem into smaller overlapping subproblems.
+- Example: Combination Sum solved by building solutions for smaller sums and extending them.
+- Uses arrays or hash maps to store intermediate combinations.
+- Efficiently builds up to the final solution.
+
+5. Graph Traversal: Depth First Search (DFS) and Breadth First Search (BFS)
+- DFS explores as far as possible along each branch before backtracking (uses stack).
+- BFS explores all neighbors at the current depth before going deeper (uses queue).
+- DFS useful for pathfinding, cycle detection, topological sort.
+- BFS useful for shortest path problems.
+- Both fundamental for graph-related coding interview problems.
+
+
+
+15 Essential Coding Patterns for Interviews
+1. Prefix Sum Pattern
+- Used for fast range sum queries on arrays.
+- Precompute prefix sums so sum(i to j) = prefix[j] - prefix[i-1].
+- Optimizes multiple sum queries from O(N*M) to O(N+M).
+- Can sometimes be done in-place without extra space.
+
+2. Two Pointers Pattern
+- Use two pointers moving towards or away from each other.
+- Common for palindrome checks, pair sums, removing duplicates.
+- Reduces complexity from O(N²) to O(N) in many cases.
+
+3. Sliding Window Pattern
+- Find subarrays/substrings meeting criteria (e.g., max sum of size k).
+- Maintain a window, expand and shrink it dynamically.
+- Optimizes nested loops to linear time.
+
+4. Fast and Slow Pointers Pattern
+- Two pointers move at different speeds.
+- Detect cycles in linked lists or arrays.
+- Find middle element in one pass.
+
+5. Linked List In-place Reversal Pattern
+- Reverse linked list using three pointers (prev, curr, next).
+- Done in one pass without extra space.
+- Useful for rearranging nodes efficiently.
+
+6. Monotonic Stack Pattern
+- Use stack to find next greater/smaller elements efficiently.
+- Maintains elements in increasing or decreasing order.
+- Reduces brute force O(N²) to O(N).
+
+7. Top K Elements Pattern
+- Find k largest/smallest or most frequent elements.
+- Use min-heap or max-heap to maintain top k elements.
+- Time complexity O(N log k).
+
+8. Overlapping Intervals Pattern
+- Solve problems involving interval merging, intersections.
+- Sort intervals by start time.
+- Merge overlapping intervals by updating end times.
+
+9. Modified Binary Search Pattern
+- Binary search variant for rotated arrays, duplicates, unknown lengths.
+- Determine which half is sorted and search accordingly.
+
+10. Binary Tree Traversal Pattern
+- common traversals: pre-order, in-order, post-order, level-order.
+- Use recursion or stack/queue.
+- Choose traversal based on problem needs.
+
+11. Depth First Search (DFS) Pattern
+- Explore all paths/branches in trees or graphs.
+- Used for pathfinding, cycle detection, connected components.
+- Implement recursively or with stack.
+
+12. Breadth First Search (BFS) Pattern
+- Explore nodes level by level using a queue.
+- Useful for shortest path in unweighted graphs, level order traversal.
+
+13. Matrix Traversal Pattern
+- Treat matrix cells as graph nodes.
+- Use DFS/BFS to traverse connected components.
+- Example: counting islands in a grid.
+
+14. Backtracking Pattern
+- Explore all solution paths, backtrack on invalid states.
+- Used for permutations, combinations, puzzles (Sudoku, N-Queens).
+- Implement with recursion and pruning.
+
+15. Dynamic Programming (DP) Pattern
+- Solve optimization problems by breaking into subproblems.
+- Store intermediate results to avoid recomputation.
+- Useful for problems with overlapping subproblems and optimal substructure.
+
+
+
+6 Essential Coding Interview Patterns
+1. Heap
+- Specialized tree-based data structure.
+- Supports efficient retrieval of min or max element.
+- Operations: insert and remove in O(log n), peek min/max in O(1).
+- Useful for "Top K" problems and priority queue scenarios.
+- Can build a heap from n elements in O(n) time if all elements are available upfront.
+- Common in graph algorithms like shortest path (Dijkstra’s).
+
+2. Sliding Window- Uses two pointers to create a window over a sequence.
+- Efficiently solves problems involving contiguous subarrays/substrings.
+- Converts O(n²) brute force to O(n) by expanding/shrinking window.
+- Examples: longest substring without repeating characters, max sum subarray.
+
+3. Binary Search
+- Divide and conquer algorithm on sorted arrays or search spaces.
+- Repeatedly halves the search space to find a target value.
+- Time complexity: O(log n).
+- Sometimes non-obvious to identify but very powerful.
+- Variants exist for rotated arrays, infinite arrays, or condition-based searches.
+
+4. Depth First Search (DFS) and Breadth First Search (BFS)
+- DFS: explores as far as possible along each branch before backtracking.
+- BFS: explores neighbors level-by-level using a queue.
+- Fundamental for tree and graph traversal.
+- Building blocks for complex algorithms like shortest path, cycle detection.
+- Mastery enables solving many graph and tree problems.
+
+5. Recursion
+- Function calls itself to solve smaller subproblems.
+- Requires understanding base case and recursive step.
+- Used in tree traversals, backtracking, divide and conquer.
+- Important to understand call stack and memory usage.
+- Often challenging but essential for many problems.
+
+6. Hashmaps
+- Key-value data structure with average O(1) insert, delete, and lookup.
+- Extremely common in interview problems (e.g., Two Sum).
+- Useful as a utility to optimize other algorithms (DFS, sliding window).
+- Understanding hashmaps is critical for efficient coding solutions.

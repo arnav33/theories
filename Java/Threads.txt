@@ -1,0 +1,103 @@
+===============================
+Java Threads and Concurrency
+===============================
+
+1. Thread Basics
+    - Thread creation and management
+      - Thread.start, Thread.run
+          - start: Starts a new thread and invokes its run() method in a separate call stack.
+          - run: Contains the code to be executed by the thread; called directly if not started with start().
+      - Thread.currentThread, Thread.getId, Thread.getName
+          - currentThread: Returns a reference to the currently executing thread object.
+          - getId: Returns the unique identifier for the thread.
+          - getName: Returns the name of the thread.
+      - Thread.getState, Thread.isAlive
+          - getState: Returns the current execution state of the thread.
+          - isAlive: Checks if the thread has been started and has not yet terminated.
+      - Thread.setName, Thread.getThreadGroup
+          - setName: Sets the name of the thread.
+          - getThreadGroup: Returns the thread group to which the thread belongs.
+      - Thread.setDaemon
+          - setDemon: Marks the thread as a daemon thread, which does not prevent JVM exit.
+      - Thread.getPriority, Thread.setPriority
+          - getPriority: Returns the priority of the thread.
+          - setPriority: Sets the priority of the thread, affecting thread scheduling.
+      - Thread.yield, Thread.join, Thread.sleep
+          - yield: Hints to the scheduler that the current thread is willing to yield its current use of a processor.
+          - join: Waits for the thread to die before proceeding.
+          - sleep: Causes the current thread to pause execution for a specified time.
+      - Thread.interrupt, Thread.isInterrupted, Thread.interrupted
+          - interrupt: Requests interruption of the thread, setting its interrupted status.
+          - isInterrupted: Checks if the thread has been interrupted.
+          - interrupted: Checks and clears the interrupted status of the current thread.
+      - Thread.setUncaughtExceptionHandler, Thread.getUncaughtExceptionHandler
+          - setUncaughtExceptionHandler: Sets a handler to catch uncaught exceptions in the thread.
+          - getUncaughtExceptionHandler: Returns the handler for uncaught exceptions in the thread.
+      - Thread.getContextClassLoader, Thread.setContextClassLoader
+          - getContextClassLoader: Returns the context ClassLoader for the thread.
+          - setContextClassLoader: Sets the context ClassLoader for the thread.
+      - Thread.activeCount, Thread.enumerate
+          - activeCount: Returns an estimate of the number of active threads in the current thread's group.
+          - enumerate: Copies references to all active threads into an array.
+      - Thread.getStackTrace, Thread.dumpStack
+          - getStackTrace: Returns an array of stack trace elements representing the thread's stack dump.
+          - dumpStack: Prints the current thread's stack trace to the standard error stream.
+      - Thread.holdsLock
+          - holdsLock: Checks if the current thread holds the monitor lock on the specified object.
+
+2. Thread Groups and Local Variables
+    - ThreadGroup: Represents a group of threads for collective management and control.
+    - ThreadLocal: Provides thread-local variables, ensuring each thread has its own independent value.
+
+3. Synchronization and Concurrency Control
+    - synchronized keyword: Ensures that only one thread can execute a block of code or method at a time.
+    - volatile keyword: Guarantees visibility of changes to variables across threads.
+    - Lock interfaces and classes
+      - Lock: Provides explicit locking operations for advanced thread synchronization.
+      - ReentrantLock: A lock with the same basic behavior as synchronized but with extended capabilities.
+      - ReadWriteLock: Allows multiple readers or one writer at a time for improved concurrency.
+    - Atomic variables
+      - AtomicInteger: Provides atomic operations on integers without using synchronization.
+      - AtomicBoolean: Provides atomic operations on boolean values.
+    - Semaphores and Barriers
+      - Semaphore: Controls access to a resource by multiple threads using permits.
+      - CountDownLatch: Allows one or more threads to wait until a set of operations are completed.
+      - CyclicBarrier: Enables a set of threads to wait for each other to reach a common barrier point.
+    - Condition variables
+      - Condition interface (with Lock): Provides thread coordination methods such as await and signal for advanced synchronization.
+    - Memory consistency and happens-before relationships
+     - Memory consistency: Ensures that changes made by one thread are visible to others in a predictable manner.
+     - happens-before relationships: Defines the ordering guarantees between actions in different threads.
+
+4. Executors and Thread Pools
+    - Executor, ExecutorService, ScheduledExecutorService
+     - Executor: A simple interface for launching new tasks.
+     - ExecutorService: Extends Executor with lifecycle management and task submission features.
+     - ScheduledExecutorService: Supports scheduling tasks to run after a delay or periodically.
+    - ThreadFactory: Used to create new threads with custom settings for executors.
+    - Callable and Runnable interfaces
+     - Callable inteface: Represents a task that returns a result and may throw an exception.
+     - Runnable interface: Represents a task to be executed by a thread without returning a result.
+    - Work stealing: A technique where idle threads steal tasks from busy threads to improve throughput.
+
+5. Futures and Asynchronous Computation
+    - Future, CompletableFuture, FutureTask
+     - Future: Represents the result of an asynchronous computation and provides methods to check completion and retrieve the result.
+     - CompletableFuture: A flexible Future implementation supporting completion, chaining, and combining of asynchronous tasks.
+     - FutureTask: A cancellable asynchronous computation that implements both Runnable and Future.
+    - CompletionService: Manages asynchronous task execution and allows retrieval of completed task results as they become available.
+
+6. Fork/Join Framework
+    - ForkJoinPool: A special thread pool designed for parallelism using work-stealing algorithms.
+    - ForkJoinTask: A lightweight task for use with ForkJoinPool, supporting fork and join operations.
+    - RecursiveTask: A ForkJoinTask that returns a result.
+    - RecursiveAction: A ForkJoinTask that does not return a result.
+
+7. Best Practices and Common Pitfalls
+    - Deadlocks, livelocks, starvation
+     - Deadlocks: Occur when two or more threads are blocked forever, each waiting for the other to release a resource.
+     - livelocks: Threads are not blocked but unable to make progress due to repeated responses to each other.
+     - starvation: A thread is perpetually denied access to resources and cannot proceed.
+    - Thread safety and immutability: Ensuring shared data is accessed safely by multiple threads, often by making objects immutable.
+    - Safe publication and visibility: Properly sharing objects between threads so that changes are visible and safe.
+    - Performance considerations (contention, false sharing): Understanding and minimizing performance issues due to resource contention and inefficient memory usage.

@@ -1,0 +1,43 @@
+Java 8
+- Lambda Expressions
+- Stream API
+- Default Methods in Interfaces
+- Functional Interfaces
+- Optional Class
+- New Date and Time API (java.time)
+- Nashorn JavaScript Engine
+- Parallel Array Sorting
+- CompletableFuture
+- Type Annotations
+
+Java 11
+- Local-Variable Syntax for Lambda Parameters
+- HTTP Client (Standard)
+- String Methods (isBlank, lines, strip, repeat)
+- Files Methods (readString, writeString)
+- Running Java Files with java command (single-file source-code programs)
+- Flight Recorder
+- Epsilon Garbage Collector
+- Nest-Based Access Control
+- Unicode 10 Support
+
+Java 17
+- Sealed Classes
+- Pattern Matching for instanceof
+- Records (finalized)
+- Text Blocks (finalized)
+- Strongly Encapsulate JDK Internals
+- Foreign Function & Memory API (Incubator)
+- New macOS Rendering Pipeline
+- Deprecate the Security Manager
+- Enhanced Pseudo-Random Number Generators
+
+Java 21
+- Record Patterns (finalized)
+- Pattern Matching for Switch (finalized)
+- Virtual Threads (Project Loom)
+- Structured Concurrency (Incubator)
+- String Templates (Preview)
+- Sequenced Collections
+- Foreign Function & Memory API (finalized)
+- Scoped Values (Incubator)

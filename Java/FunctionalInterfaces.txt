@@ -1,0 +1,6 @@
+- Predicate<T> — returns boolean, used for filtering and matching.
+- Function<T, R> — transforms data.
+- Consumer<T> — performs side-effects.
+- Supplier<T> — supplies/generates values.
+- UnaryOperator<T> — function from T to T.
+- BinaryOperator<T> — function from (T, T) to T

@@ -1,0 +1,33 @@
+Intermediate Operations
+- filter(Predicate<? super T> predicate) — keeps elements matching the predicate
+- map(Function<? super T, ? extends R> mapper) — transforms elements
+- mapToInt(ToIntFunction<? super T> mapper) / mapToLong / mapToDouble — specialized mapping to primitive streams
+- flatMap(Function<? super T, ? extends Stream<? extends R>> mapper) — flattens nested streams
+- distinct() — removes duplicates
+- sorted() — sorts elements naturally
+- sorted(Comparator<? super T> comparator) — sorts with custom comparator
+- peek(Consumer<? super T> action) — performs an action on each element (mainly for debugging)
+- limit(long maxSize) — truncates stream to maxSize elements
+- skip(long n) — skips first n elements
+
+Terminal Operations
+- forEach(Consumer<? super T> action) — performs action on each element
+- forEachOrdered(Consumer<? super T> action) — same as forEach but respects encounter order
+- toArray() — collects elements into an array
+- reduce(BinaryOperator<T> accumulator) — combines elements into one value
+- reduce(T identity, BinaryOperator<T> accumulator) — with identity value
+- reduce(U identity, BiFunction<U, ? super T, U> accumulator, BinaryOperator<U> combiner) — mutable reduction
+- collect(Collector<? super T, A, R> collector) — mutable reduction to container (e.g., List, Set)
+- min(Comparator<? super T> comparator) — finds minimum element
+- max(Comparator<? super T> comparator) — finds maximum element
+- count() — counts elements
+- anyMatch(Predicate<? super T> predicate) — checks if any element matches predicate
+- allMatch(Predicate<? super T> predicate) — checks if all elements match predicate
+- noneMatch(Predicate<? super T> predicate) — checks if no elements match predicate
+- findFirst() — returns first element (optional)
+- findAny() — returns any element (optional, useful in parallel streams)
+
+Primitive Stream Specific Methods
+- sum() — sums elements
+- average() — average of elements (returns OptionalDouble)
+- summaryStatistics() — returns statistics object with count, sum, min, max, average

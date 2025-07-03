@@ -1,0 +1,52 @@
+1. New String Methods: These methods reduce boilerplate and improve Unicode handling in string manipulation.
+- isBlank(): Checks if a string is empty or contains only whitespace (Unicode-aware).
+- lines(): Returns a stream of lines extracted from the string, useful for processing multi-line strings.
+- strip(): Unicode-aware trimming methods that improve on the older trim().
+- stripLeading(): Unicode-aware trimming methods that improve on the older trim().
+- stripTrailing(): Unicode-aware trimming methods that improve on the older trim().
+- repeat(int): Repeats the string a specified number of times.
+
+2. Running Java Source Files Directly
+- Java 11 allows running a single-file Java source code directly with the java command without explicit compilation using javac.
+- This feature (JEP 330) simplifies quick prototyping and scripting.
+- This implicitly compiles and runs the code in one step.
+
+3. New HTTP Client API:
+- The new java.net.http HTTP Client, introduced as incubator in Java 9 and finalized in Java 11.
+- It supports HTTP/1.1 and HTTP/2 protocols.
+- It provides a modern, asynchronous, and reactive API for HTTP calls.
+- It replaces the old HttpURLConnection with a more powerful and flexible API supporting WebSocket as well.
+
+4. Local-Variable Syntax for Lambda Parameters
+- Java 11 allows using var in lambda parameter declarations
+- It enables annotations on lambda parameters.
+- It improves uniformity with local variable type inference introduced in Java 10.
+
+5. Nest-Based Access Control
+- Java 11 introduces the concept of "nestmates".
+- Here an outer class and its nested classes form a nest with special access privileges.
+- This allows private members to be accessed across nested classes without reflection hacks.
+- It improves encapsulation and performance.
+
+6. Epsilon No-Op Garbage Collector
+- Java 11 adds an experimental "No-Op" garbage collector called Epsilon that allocates memory but does not reclaim it.
+- It is useful for performance testing, VM interface testing, and short-lived jobs where GC overhead should be minimized.
+
+7. Dynamic Class-File Constants
+- This JVM-level enhancement introduces a new constant pool form CONSTANT_Dynamic.
+- It improves performance and support dynamically-computed constants.
+- It benefits language designers and compiler implementors.
+
+8. Unicode 9 and 10 Support
+- Java 11 updates Unicode support by adding 16,018 new characters
+- It includes new symbols, emoji, and scripts to support modern standards like 4K TV symbols and Bitcoin signs.
+
+9. Java Flight Recorder (JFR) Open Sourced
+- Java Flight Recorder, a profiling and diagnostics tool.
+- It is now open-source as part of OpenJDK.
+- It enables developers to gather detailed runtime information for performance tuning and troubleshooting.
+
+10. Files Class Enhancements
+- 10. Files Class Enhancements
+- New static methods Files.readString() and Files.writeString() simplify reading from and writing to files as strings.
+- It reduces boilerplate code in file I/O operations.

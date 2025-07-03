@@ -1,0 +1,66 @@
+1. Record Patterns
+- Record patterns, now finalized (moved out of preview).
+- It extend pattern matching to destructure record instances directly in instanceof checks and switch statements.
+- This allows more concise and readable code when working with immutable data classes (records).
+- It includes support for nested record patterns for composable data queries.
+
+2. Pattern Matching for switch
+- Pattern matching for switch statements and expressions is finalized.
+- It enabed the combination of type checks and pattern deconstruction inside switch cases.
+- This greatly simplifies complex conditional logic and enhances code clarity.
+
+3. Sequenced Collections
+- Java 21 introduces a new set of interfaces for sequenced collections.
+- Such as SequencedCollection, SequencedSet, and SequencedMap.
+- These collections maintain a defined encounter order and provide easy access to first and last elements, as well as support for reverse iteration, standardizing operations that were previously inconsistent across collection types.
+
+4. String Templates (Preview)
+- String templates add string interpolation to Java.
+- It allows embedding expressions inside string literals in a readable and secure manner.
+- This feature improves code readability and reduces errors in string construction.
+- It is available as a preview feature, requiring explicit enabling.
+
+5. Virtual Threads (Finalized)
+- Virtual threads, introduced in earlier previews, are now finalized.
+- They provide lightweight threads managed by the JVM.
+- It enables applications to scale to millions of concurrent threads with minimal overhead.
+- This is a major improvement for concurrent and asynchronous programming.
+
+6. Scoped Values (Preview)
+- Scoped values offer an alternative to ThreadLocal for sharing immutable data within and across threads, especially useful with virtual threads.
+- Scoped values improve performance and simplify data propagation in concurrent contexts.
+
+7. Structured Concurrency (Preview)
+- Structured concurrency simplifies the management of multiple concurrent tasks by treating them as a single unit of work.
+- It improves error handling and cancellation semantics.
+- This feature enhances the robustness of concurrent code.
+
+8. Generational Z Garbage Collector
+- Java 21 enhances the Z Garbage Collector (ZGC) with generational capabilities.
+- It separates young and old object generations to improve performance by collecting short-lived objects more frequently.
+- This reduces CPU usage and memory overhead without sacrificing throughput.
+
+9. Vector API (6th Incubator)
+- The Vector API continues incubation.
+- It enables developers to write vectorized computations that compile to optimal SIMD instructions on supported CPUs.
+- It improves performance for data-parallel operations.
+
+10. Foreign Function & Memory API (Third Preview)
+- This API simplifies interaction with native code and memory outside the Java heap.
+- It offers a safer and more efficient alternative to JNI for calling native libraries and managing off-heap memory.
+
+11. Key Encapsulation Mechanism (KEM) API (JEP 452)
+- Java 21 introduces a new cryptographic API to support key encapsulation mechanisms.
+- It is important for post-quantum cryptography and secure key exchange protocols.
+
+12. Unnamed Patterns and Variables (Preview)
+- This feature improves pattern matching readability by allowing unnamed patterns and variables in destructuring.
+- It reduces boilerplate when some components are not needed.
+
+13. Unnamed Classes and Instance Main Methods (Preview)
+- Unnamed classes simplify quick prototyping and scripting by allowing classes without explicit names and instance main methods.
+- It reduces typical boilerplate for simple command-line utilities.
+
+14. Deprecations and Removals
+i. The Windows 32-bit x86 port is deprecated for removal.
+ii. Dynamic loading of agents is prepared to be disallowed in future releases.

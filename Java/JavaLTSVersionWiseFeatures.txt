@@ -1,15 +1,3 @@
-Java 8
-- Lambda Expressions
-- Stream API
-- Default Methods in Interfaces
-- Functional Interfaces
-- Optional Class
-- New Date and Time API (java.time)
-- Nashorn JavaScript Engine
-- Parallel Array Sorting
-- CompletableFuture
-- Type Annotations
-
 Java 11
 - Local-Variable Syntax for Lambda Parameters
 - HTTP Client (Standard)

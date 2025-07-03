@@ -1,0 +1,23 @@
+Delegation Pattern
+- Used in the SDK library where each client instance holds a single concrete IAM implementation (OldAppAdapter or NewAppAdapter).
+- All client calls are delegated to this chosen implementation.
+- Simplifies SDK design by avoiding runtime switching and aligns with clients’ long-term choice of IAM system.
+
+Factory Pattern
+- Implemented via the IAMFactory class.
+- Encapsulates the creation logic of IAM implementations based on configuration or input.
+- Abstracts instantiation details from clients and centralizes object creation for maintainability and flexibility.
+
+Adapter Pattern
+- Used in identity provider integration libraries (e.g., OktaAdapter).
+- Adapts external identity provider APIs to a common interface (IdentityProviderAdapter).
+- Enables seamless integration with different identity providers without changing core business logic.
+
+Dependency Injection (DI)
+- Injects the appropriate IdentityProviderAdapter implementations into microservices like UserService and GroupService.
+- Decouples service logic from concrete implementations, facilitating easier testing and configuration.
+
+Aspect-Oriented Programming (AOP)
+- Applied in the authorization module (abc-spring-boot-starter-authorization).
+- Modularizes cross-cutting concerns such as authorization checks, logging, and exception handling.
+- Keeps business logic clean and separates concerns transparently for better maintainability.

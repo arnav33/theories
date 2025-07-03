@@ -1,0 +1,55 @@
+1. Sealed Classes and Interfaces
+- Java 17 standardizes sealed classes and interfaces.
+- It allows developers to restrict which other classes or interfaces can extend or implement them.
+- This feature improves the integrity and maintainability of class hierarchies by controlling subclassing explicitly.
+- For example, a sealed class can specify a fixed set of permitted subclasses, preventing unwanted extensions.
+
+2. Pattern Matching for switch (Preview)
+- This feature enhances switch statements and expressions with pattern matching.
+- It allows more concise and readable code by matching objects against patterns directly in switch cases.
+- It reduces boilerplate and improves expressiveness, supporting complex conditions and type checks within switch constructs.
+
+3. Enhanced Pseudo-Random Number Generators
+- Java 17 introduces a new set of interfaces and implementations.
+- It is used for pseudorandom number generators (PRNGs), including RandomGenerator and specialized interfaces such as SplittableRandomGenerator.
+- This upgrade provides a uniform API for various PRNG algorithms and supports stream-based programming.
+- It makes random number generation more flexible and powerful.
+
+4. Removal of RMI Activation
+- The Remote Method Invocation (RMI) Activation mechanism, deprecated earlier, is fully removed in Java 17.
+- To simplify the platform and reduce maintenance overhead.
+
+5. Restore Always-Strict Floating-Point Semantics
+- Java 17 restores strict IEEE 754 floating-point semantics by default.
+- It ensures consistent and predictable floating-point calculations across platforms.
+
+6. New macOS Rendering Pipeline
+- Java 17 introduces a new rendering pipeline for macOS based on Apple's Metal API.
+- It replaces the older pipeline.
+- This change improves graphics performance and compatibility on modern macOS systems, including Apple Silicon Macs.
+
+7. Vector API (Incubator)
+- The Vector API enables developers to write vectorized computations.
+- It leverage hardware SIMD instructions for improved performance in data-heavy operations.
+- This API is incubated in Java 17, allowing experimentation and feedback before standardization.
+
+8. Foreign-Memory Access API (Incubator)
+- This API simplifies interaction with memory outside the Java heap.
+- It facilitates safer and more efficient interoperability with native code and libraries, such as those written in C or C++.
+
+9. Shenandoah Garbage Collector Improvements
+- Java 17 includes enhancements to the Shenandoah garbage collector.
+- It aims to reduce pause times and improve performance for large heap applications by performing concurrent and parallel garbage collection.
+
+10. New Access-Level API for JDK Internals
+- Java 17 introduces an API to better control access to internal JDK components.
+- It helps developers safely use internal features without relying on unsupported or unsafe operations.
+
+11. Deprecation of Security Manager and Applet API
+- The Security Manager and the Applet API are deprecated in Java 17.
+- It signals their removal in future releases.
+- This reflects the evolving security model and the decline of applets in favor of modern web technologies.
+
+12. New API for Large Icons and InstantSource Interface
+- Java 17 adds new APIs to improve UI capabilities and time-source handling.
+- Such as an interface for retrieving the current instant, enhancing time-based operations.

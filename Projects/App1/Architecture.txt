@@ -1,0 +1,29 @@
+Libraries
+1. abc-spring-boot-starter-core
+- ConfigurationManager
+- ExceptionHandlers
+- LogHandlers
+- HealthCheckers:  should leverage Spring Boot Actuator’s health indicators or extend them.
+2. abc-spring-boot-starter-authorization
+- AuthorizationManager
+	- annotations
+	- interceptors
+	- AOP
+3. abc-spring-boot-starter-cloud-aws
+- AWS SDK wrappers
+- AWS config helpers
+4. abc-spring-boot-starter-monitoring
+- Metrics
+- audit logging
+- monitoring
+
+Microservices
+- AuthenticationService
+- ApplicationService
+- GroupService
+- UserService
+- ClientCredentialsService
+- AttributeService
+- AccessControlService
+
+IdentityProviderAdapterService

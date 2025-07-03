@@ -1,0 +1,110 @@
+Java 8
+- Functional Interface
+    - Predicate<String> isLong = s -> s.length() > 5;
+    - Function<String, Integer> length = s -> s.length();
+    - Supplier<String> print = System.out::println;
+    - Consumer<String> print = s -> System.out.println(s);
+    - BinaryOperator<Integer> sum = (a, b) -> a + b;
+    - Collectors
+        - Collectors.counting(): Returns a collector that counts the number of input elements
+- Lambda Expressions
+- Stream API
+    - Intermediate Operations
+        - filter(Predicate)
+        - map(Function)
+        - sorted()
+        - distinct()
+        - limit(n)
+        - skip(n)
+    - Terminal Operations
+        - forEach(Consumer)
+        - collect(Collector)
+        - reduce(BinaryOperator)
+        - count()
+        - anyMatch()
+        - allMatch()
+        - noneMatch()
+    - Other
+        - Function.identity(): Returns a function that always returns its input argument. Useful as a default mapping function.
+        - Collectors
+            - Collectors.counting(): Returns a collector that counts the number of input elements
+            - Collectors.toList(), Collectors.toSet(), Collectors.toMap(): Collect stream elements into a List, Set, or Map.
+            - Collectors.groupingBy(): Groups elements by a classifier function.
+            - Collectors.partitioningBy(): Partitions elements into two groups based on a predicate.
+            - Collectors.joining(", "): Concatenates elements into a single String.
+        - Map.Entry.comparingByKey(), Map.Entry.comparingByValue(): Comparators for sorting map entries by key or value.
+        - Comparator.comparing(), Comparator.thenComparing(), Comparator.reverseOrder(): Build custom comparators for sorting.
+        - Optional.of(), Optional.ofNullable(), Optional.empty()
+        - Optional.map(), Optional.flatMap(), Optional.filter()
+        - Optional.orElse(), Optional.orElseGet(), Optional.orElseThrow()
+        - Stream.of(), Arrays.stream()
+        - IntStream.range(1, 10).sum(), LongStream, DoubleStream
+        - peek()
+
+- Default Methods in Interfaces
+- Optional Class
+- New Date and Time API (java.time)
+    - LocalDate date = LocalDate.now();
+    - LocalTime time = LocalTime.now();
+    - LocalDateTime dateTime = LocalDateTime.now();
+    - ZonedDateTime zonedDateTime = ZonedDateTime.now();
+    - Instant instant = Instant.now();
+    - Period period = Period.between(startDate, endDate);   // years, months, days
+    - Duration duration = Duration.between(startTime, endTime); // hours, minutes, seconds, nanoseconds
+    - DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    - String formatted = date.format(formatter);
+- Nashorn JavaScript Engine
+- Parallel Array Sorting
+- CompletableFuture
+- Type Annotations
+
+// Java 8 Stream and Collector Utilities with Parameter Types
+
+// Stream creation
+Stream.of(T... values) // Takes: varargs of type T
+Arrays.stream(T[] array) // Takes: array of type T
+
+// Stream operations
+filter(Predicate<T> predicate) // Takes: Predicate<T>
+map(Function<T, R> mapper) // Takes: Function<T, R>
+flatMap(Function<T, Stream<R>> mapper) // Takes: Function<T, Stream<R>>
+forEach(Consumer<T> action) // Takes: Consumer<T>
+peek(Consumer<T> action) // Takes: Consumer<T>
+sorted() // No parameter (natural order)
+sorted(Comparator<T> comparator) // Takes: Comparator<T>
+distinct() // No parameter
+limit(long maxSize) // Takes: long
+skip(long n) // Takes: long
+reduce(BinaryOperator<T> accumulator) // Takes: BinaryOperator<T>
+reduce(T identity, BinaryOperator<T> accumulator) // Takes: T, BinaryOperator<T>
+collect(Collector<T, A, R> collector) // Takes: Collector<T, A, R>
+
+// Collectors
+Collectors.toList() // Returns: Collector<T, ?, List<T>>
+Collectors.toSet() // Returns: Collector<T, ?, Set<T>>
+Collectors.toMap(Function<T, K> keyMapper, Function<T, V> valueMapper) // Takes: Function<T, K>, Function<T, V>
+Collectors.groupingBy(Function<T, K> classifier) // Takes: Function<T, K>
+Collectors.partitioningBy(Predicate<T> predicate) // Takes: Predicate<T>
+Collectors.counting() // Returns: Collector<T, ?, Long>
+Collectors.joining(CharSequence delimiter) // Takes: CharSequence
+
+// Utility methods
+Function.identity() // Returns: Function<T, T>
+Comparator.comparing(Function<T, U> keyExtractor) // Takes: Function<T, U>
+Comparator.thenComparing(Comparator<T> other) // Takes: Comparator<T>
+Comparator.reverseOrder() // No parameter
+Map.Entry.comparingByKey() // Returns: Comparator<Map.Entry<K, V>>
+Map.Entry.comparingByValue() // Returns: Comparator<Map.Entry<K, V>>
+
+- Optional
+Optional.map(Function<T, U> mapper) // Takes: Function<T, U>
+Optional.filter(Predicate<T> predicate) // Takes: Predicate<T>
+Optional.orElse(T other) // Takes: T
+Optional.orElseGet(Supplier<T> supplier) // Takes: Supplier<T>
+Optional.orElseThrow(Supplier<X> exceptionSupplier) // Takes: Supplier<X>
+
+- Primitive Streams
+IntStream.range(int startInclusive, int endExclusive) // Takes: int, int
+IntStream.of(int... values) // Takes: varargs of int
+
+// Example usages are provided in comments above for each method.

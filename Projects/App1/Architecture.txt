@@ -17,6 +17,7 @@ Libraries
 - audit logging
 - monitoring
 
+
 Microservices
 - AuthenticationService
 - ApplicationService
@@ -26,4 +27,26 @@ Microservices
 - AttributeService
 - AccessControlService
 
-IdentityProviderAdapterService
+IdentityProviderAdapter
+
+
+150+ instances legecy - 4.7.2
+- User Management
+- Role / Group Management - 403 forbidden
+- Bulk import / export
+- Temporary Access / Impersonation: some hooks
+- Landing Page
+- Select Identity
+- client based sso via Pingfed - doesn't support saml directly. connect with client idp to authenticate the system
+
+company - PaS
+- Jav - 1st
+	- Classic. forms-auth, oauth 1.0
+	- tat
+	- SSO
+- Next - 2rd
+	- Suit
+		- app
+			- common characteracters
+				- Login at one place and access all the application (SSO)
+				- 
